@@ -1,5 +1,14 @@
+import pandas as pd
+
 # Global Variables
 user_id = ""
+
+def clean_country_list(file_name):
+    europe_data = pd.read_csv(file_name)
+    europe_data = europe_data[europe_data['continent'] == 'Europe']
+    selected_columns = ['country', 'currency', 'capital_city', 'region', 'gdp', 'population', 'democracy_type']
+    europe_data = europe_data[selected_columns]
+    return europe_data
 
 def intro_message():
     print("\n\033[1;4m\t\tWelcome to the European Travel and Information Guide\033[0m\n")
@@ -48,6 +57,9 @@ def main():
 
     set_user_id()
     print("\nHere is your unique User_ID: {}".format(user_id))
+
+    european_data = clean_country_list("All_countries.csv")
+    print(european_data)
 
     while True:
         print_command_list()
