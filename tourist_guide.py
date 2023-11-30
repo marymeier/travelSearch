@@ -39,6 +39,10 @@ def clean_country_list(file_name):
 
     return new_europe_data
 
+def new_data(file_name):
+    different_data = pd.read_csv(file_name)
+    return different_data
+
 def intro_message():
     print("\n\033[1;4m\t\tWelcome to the European Travel and Information Guide\033[0m\n")
     print("\tHere will be a travel guide that details information regarding a country\n\t" + 
@@ -95,7 +99,16 @@ def main():
     print("\nHere is your unique User_ID: {}".format(user_id))
 
     european_data = clean_country_list("All_countries.csv")
-    print(european_data)
+    # print(european_data)
+
+    # country_table = {'country': european_data['country'].tolist()}
+
+
+    # print(country_table)
+
+    diff_db = new_data("data.csv")
+    headers = diff_db.columns
+    print(diff_db)
 
     while True:
         break
