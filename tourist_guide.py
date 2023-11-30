@@ -86,7 +86,7 @@ def set_user_id():
     user_id = user_first_name[0] + user_last_name
 
 def connect_travelSearch():
-    # Connect to sqlite and create tables needed
+    # Connect to sqlite and tableSearch database
     conn = sqlite3.connect('travelSearch.db')
 
     cursor = conn.cursor()
