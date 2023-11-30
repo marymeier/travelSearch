@@ -98,18 +98,50 @@ def create_country_table_csv(european_data_frame, additional_europe_data_frame):
     selected_columns_diff_db = ['country_name', 'most_common_religion', 'language', 'time_zone']
     working_db = additional_europe_data_frame[selected_columns_diff_db]
 
-    Country_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
-    Country_table.drop(columns=['country_name'], inplace=True)
-    Country_table.sort_values(by='country', inplace=True)
+    country_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
+    country_table.drop(columns=['country_name'], inplace=True)
+    country_table.sort_values(by='country', inplace=True)
 
     desired_order = ['country', 'most_common_religion', 'language', 'democracy_type', 'time_zone']
     new_column_names = {'country': 'name', 'democracy_type': 'govt_struct'}
-    Country_table = Country_table[desired_order]
-    Country_table = Country_table.rename(columns=new_column_names)
+    country_table = country_table[desired_order]
+    country_table = country_table.rename(columns=new_column_names)
 
     output_file_path = 'Country_table.csv'
-    Country_table.to_csv(output_file_path, index=False)
-    return(Country_table)
+    country_table.to_csv(output_file_path, index=False)
+    return country_table
+
+def create_economy_table_csv(european_data_frame, additional_europe_data_frame):
+    europe_data_selected = european_data_frame[['country', 'currency', 'gdp']]
+    selected_columns_diff_db = ['country_name', 'economic_world_ranking', 'economy_type', 'largest_industry']
+    working_db = additional_europe_data_frame[selected_columns_diff_db]
+
+    economy_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
+    economy_table.drop(columns=['country_name'], inplace=True)
+    economy_table.sort_values(by='economic_world_ranking', inplace=True)
+
+    desired_order = ['country', 'economic_world_ranking', 'gdp', 'economy_type', 'currency', 'largest_industry']
+    economy_table = economy_table[desired_order]
+
+    output_file_path = 'Economy_table.csv'
+    economy_table.to_csv(output_file_path, index=False)
+    return economy_table
+
+def create_capital_city_table_csv(european_data_frame, additional_europe_data_frame):
+    europe_data_selected = european_data_frame[['country', 'population', 'capital_city']]
+    selected_columns_diff_db = ['country_name', 'capital_city_region']
+    working_db = additional_europe_data_frame[selected_columns_diff_db]
+
+    capital_city_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
+    capital_city_table.drop(columns=['country_name'], inplace=True)
+    capital_city_table.sort_values(by='country', inplace=True)
+
+    desired_order = ['country', 'capital_city', 'population', 'capital_city_region']
+    capital_city_table = capital_city_table[desired_order]
+
+    output_file_path = 'Capital_City_table.csv'
+    capital_city_table.to_csv(output_file_path, index=False)
+    return capital_city_table
 
 def main():
     intro_message()
@@ -120,18 +152,25 @@ def main():
     european_data = clean_country_list("All_countries.csv")
 
     additional_europe_data_frame = new_data("data.csv")
+    print(additional_europe_data_frame.columns)
 
-    Country_table_df = create_country_table_csv(european_data, additional_europe_data_frame)
-    print(Country_table_df)
+    country_table_df = create_country_table_csv(european_data, additional_europe_data_frame)
+    # print(Country_table_df)
+    economy_table_df = create_economy_table_csv(european_data, additional_europe_data_frame)
+    # print(economy_table_df)
+    capital_city_table_df = create_capital_city_table_csv(european_data, additional_europe_data_frame)
+    print(capital_city_table_df)
 
-    for index, row in Country_table_df.iterrows():
-    # Print the values in each row
-        print(f"Country: {row['name']}")
-        print(f"Democracy Type: {row['govt_struct']}")
-        print(f"Most Common Religion: {row['most_common_religion']}")
-        print(f"Language: {row['language']}")
-        print(f"Time Zone: {row['time_zone']}")
-        print("\n")
+
+
+    # for index, row in Country_table_df.iterrows():
+    # # Print the values in each row
+    #     print(f"Country: {row['name']}")
+    #     print(f"Democracy Type: {row['govt_struct']}")
+    #     print(f"Most Common Religion: {row['most_common_religion']}")
+    #     print(f"Language: {row['language']}")
+    #     print(f"Time Zone: {row['time_zone']}")
+    #     print("\n")
 
 
     while True:

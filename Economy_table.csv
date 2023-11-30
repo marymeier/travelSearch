@@ -1,0 +1,51 @@
+country,economic_world_ranking,gdp,economy_type,currency,largest_industry
+Germany,3,4072190000000.0,Mixed,Euro,Mechanical
+Switzerland,6,807706000000.0,"Open, free-market based",Swiss franc,Banking and finance
+Russia,6,2240420000000.0,Mixed-market,Russian ruble,Machine building
+France,7,2782910000000.0,Mixed,Euro,Health and social care
+Italy,8,2010430000000.0,Social market,Euro,Tourism
+United Kingdom,9,3070670000000.0,"Open, free-market based",Pound sterling,Service sector
+Turkey,11,3613000000000.0,Mixed-market,Turkish lira,Manufacturing
+Spain,15,1397510000000.0,Mixed-market,Euro,Manufacturing
+Poland,21,688177000000.0,Mixed-market,Polish zloty,Service sector
+Belgium,23,578604000000.0,Mixed-market,Euro,Pharmaceuticals
+Ireland,27,529245000000.0,Mixed,Euro,Pharmaceuticals
+Netherlands,28,991115000000.0,Mixed-market,Euro,"Machinery, high tech"
+Austria,33,471400000000.0,Mixed-market,Euro,Sales
+Romania,36,301262000000.0,Mixed-market,New Romanian leu,Motor vehicles
+Sweden,40,585939000000.0,Mixed-market,Swedish krona,Engineering & automotive
+Denmark,41,395404000000.0,Free-market capitalist,Danish krone,Tourism
+Finland,46,280826000000.0,Mixed,Euro,Manufacturing
+Czech Republic,47,290924000000.0,Mixed,Czech koruna,Automobile
+Portugal,50,251945000000.0,Service-based mixed economy,Euro,Service / tourism
+Norway,52,579267000000.0,Mixed-market,Norwegian krone,Oil and gas
+Greece,53,219066000000.0,Capitalist,Euro,Tourism
+Hungary,58,178789000000.0,High-income mixed,Hungarian forint,Automotive
+Ukraine,58,160503000000.0,Mixed-market,Ukrainian hryvnia,Heavy industry
+Bulgaria,69,89040400000.0,"Open, free-market based",Bulgarian lev,Tourism
+Slovak Republic,70,115469000000.0,Mixed-market,Euro,Service sector
+Luxembourg,71,82274800000.0,Mixed,Euro,Banking
+Belarus,74,72793500000.0,Market socialist,Belarusian rubel,Food
+Lithuania,78,70334300000.0,Market,Euro,Oil refinement
+Serbia,80,63501800000.0,"Open, free-market based",New Serbian dinar,Energy and the automotive industry
+Croatia,82,70964600000.0,Mixed-market,Croatian kuna,Manufacturing
+Azerbaijan,82,192146000000.0,Mixed-market,Azerbaijani Manat,Oil
+Slovenia,93,62117800000.0,Mixed-market,Euro,Service sector
+Moldova,98,14420900000.0,Mixed,Moldovan leu,Food processing
+Latvia,100,41153900000.0,Open,Euro,Textiles
+Estonia,102,38100800000.0,Market-based,Euro,Transportation
+Cyprus,104,28439100000.0,Mixed,Euro,Tourism
+Iceland,109,27841600000.0,Social market,Iceland krona,Tourism
+Georgia,115,82210000000.0,Small transitional market,Tbilisi,Agribusiness
+Bosnia and Herzegovina,115,24527500000.0,Transitional,Bosnia and Herzegovina convertible mark,Mineral
+Armenia,115,58497000000.0,Mixed-market,Armenian Dram,Mining
+Albania,125,18882100000.0,"Open, free-market based",Albanian lek,Agriculture
+North Macedonia,130,13563100000.0,Mixed-market,Macedonian denar,Textile industry
+Malta,131,17765300000.0,Mixed,Euro,Tourism
+Liechtenstein,147,7186430000.0,Free-enterprise,Swiss franc,Manufacturing and construction
+Montenegro,149,6095980000.0,Service-based market economy,Euro,Service sector / tourism
+Kosovo,155,27918000000.0,Transition,Euro,Agriculture
+Monaco,168,8596160000.0,Service-based market economy,Euro,Tourism & banking
+San Marino,171,1855380000.0,"Open, free-market based",Euro,Financial sector
+Andorra,172,3352030000.0,Mixed-market,Euro,Tourism
+Vatican City,197,16195272.0,Donation / tourist based,Euro,Tourism
