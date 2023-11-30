@@ -11,11 +11,11 @@ def create_Country():
     cursor = connection.cursor()
     cursor.execute('DROP TABLE IF EXISTS COUNTRY')
     create_country_table = """CREATE TABLE Country (
+                            name VARCHAR(50) NOT NULL, 
                             govt_struct VARCHAR(20), 
                             language VARCHAR(20), 
                             most_common_religion VARCHAR(20), 
                             time_zone VARCHAR(30),
-                            name VARCHAR(50) NOT NULL, 
                             PRIMARY KEY(name)
                             );
     """
@@ -48,7 +48,7 @@ def create_capital_city():
                             population INT,
                             capital_city_region VARCHAR(30),
                             country VARCHAR(50),
-                            PRIMARY KEY(name),
+                            PRIMARY KEY(capital_city),
                             FOREIGN KEY (country) REFERENCES Country(name)
                             );
     """
@@ -69,5 +69,11 @@ def create_capital_city():
     connection.commit()
     connection.close()
 
-if __name__ == "__connect_travelSearch__":
-    connect_travelSearch()
+def main():
+    print("START")
+    create_Country()
+    print("HERREEE\n\n")
+    create_capital_city()
+
+if __name__ == "__main__":
+    main()

@@ -4,46 +4,6 @@ import sqlite3
 # Global Variables
 user_id = ""
 
-def clean_country_list(file_name):
-    europe_data = pd.read_csv(file_name)
-    europe_data = europe_data[europe_data['continent'] == 'Europe']
-    selected_columns = ['country', 'currency', 'capital_city', 'region', 'gdp', 'population', 'democracy_type']
-    europe_data = europe_data[selected_columns]
-
-    # Fixing democracy type on major basis
-    democracy_mapping = {'Flawed democracy': 'Parliamentary democracy', 'Full democracy': 'Parliamentary democracy', 'Hybrid regime': 'Constitutional monarchy'}
-    europe_data['democracy_type'] = europe_data['democracy_type'].replace(democracy_mapping)
-
-    # Fixing democracy type
-    europe_data.loc[europe_data['country'] == 'Bosnia and herzegovina', 'country'] = 'Presidential republic'
-    europe_data.loc[europe_data['country'] == 'Turkey', 'democracy_type'] = 'Presidential republic'
-    europe_data.loc[europe_data['country'] == 'Cyprus', 'democracy_type'] = 'Presidential republic'
-    europe_data.loc[europe_data['country'] == 'Monaco', 'democracy_type'] = 'Constitutional monarchy'
-    europe_data.loc[europe_data['country'] == 'San Marino', 'democracy_type'] = 'Parlimentary democracy'
-    europe_data.loc[europe_data['country'] == 'Andorra', 'democracy_type'] = 'Parlimentary democracy'
-    europe_data.loc[europe_data['country'] == 'Liechtenstein', 'democracy_type'] = 'Semi-constitutional monarchy'
-
-    europe_data = europe_data.reset_index(drop=True)
-
-    # Add new Countries:
-    missing_countries_data = {'country': ['Armenia', 'Azerbaijan', 'Georgia', 'Kosovo', 'Turkey', 'Vatican City'],
-                      'currency': ['Armenian Dram', 'Azerbaijani Manat', 'Tbilisi', 'Euro', 'Turkish lira', 'Euro'],
-                      'capital_city': ['Yerevan', 'Baku', 'Tbilisi', 'Pristina', 'Ankara', 'Vatican City'],
-                      'region': ['Eastern Europe', 'Eastern Europe', 'Eastern Europe', 'Southeast Europe', 'Southeast Europe', 'Southern Europe'],
-                      'gdp': [58497000000, 192146000000, 82210000000, 27918000000, 3613000000000, 16195272],
-                      'population': [3000756, 10353296, 3688647, 1761985, 85279553, 764],
-                      'democracy_type': ['Parlimentary democracy', 'Presidential republic', 'Parlimentary democracy', 'Parlimentary democracy', 'Presidential republic', 'Monarchy']}
-    
-    missing_countries_df = pd.DataFrame(missing_countries_data)
-    new_europe_data = pd.concat([europe_data, missing_countries_df], ignore_index=True)
-    new_europe_data = new_europe_data.sort_values(by='country', ignore_index=True)
-
-    return new_europe_data
-
-def new_data(file_name):
-    different_data = pd.read_csv(file_name)
-    return different_data
-
 def intro_message():
     print("\n\033[1;4m\t\tWelcome to the European Travel and Information Guide\033[0m\n")
     print("\tHere will be a travel guide that details information regarding a country\n\t" + 
@@ -131,6 +91,109 @@ def connect_travelSearch():
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM travelSearch.Capital_City')
     conn.commit
+
+def main():
+    """
+    # This is the code we used to sort through csv's we created and found on kaggle. We then serialized
+    # and cleaned the data. Afterwards, we created an individual csv file for each table to be created in
+    # our SQL database.
+    # Keeping it to be able to show the process of how we got our data.
+
+    european_data = clean_country_list("All_countries.csv")
+    additional_europe_data_frame = new_data("data.csv")
+
+    country_table_df = create_country_table_csv(european_data, additional_europe_data_frame)
+    economy_table_df = create_economy_table_csv(european_data, additional_europe_data_frame)
+    capital_city_table_df = create_capital_city_table_csv(european_data, additional_europe_data_frame)
+    tourist_attraction_table_df = create_tourist_attraction_table_csv(european_data, additional_europe_data_frame)
+    national_cuisine_table_df = create_national_cuisine_table_csv(european_data, additional_europe_data_frame)
+    climate_table_df= create_climate_table_csv(european_data, additional_europe_data_frame)
+    public_transportation_df = create_public_transportation_table_csv(european_data, additional_europe_data_frame)
+    national_secuirty_df = create_national_security_table_csv(european_data, additional_europe_data_frame)
+    """
+    intro_message()
+
+    returning_user_message()
+
+    print("\nHere is your unique User_ID: {}".format(user_id))
+
+    while True:
+        break
+        print_command_list()
+        user_input = input("Please enter your next command: ")
+
+        # each user_input should call a function that connects to the sql server
+        # does the sql call that we need, retreives the table, flushes the data and
+        # returns it in user friendly way
+        if user_input.lower() == "e":
+            break
+        elif user_input == "1":
+            print("add here connection to sql to retrieve country list")
+        elif user_input == "2":
+            print("add here connection to sql to retrieve entity list")
+        elif user_input == "3":
+            print("add here connection to sql to retrieve country info")
+        elif user_input == "4":
+            print("add here connection to sql to retrieve entity specific inof")
+        elif user_input == "5":
+            print("add here connection to sql to retrieve aggregate info on country")
+        else:
+            print("Your command did not match any of the acceptable ones...")
+    
+    print("\n\n\033[1;4m\t\tThank you for using our Travel Guide - Safe Travels\033[0m\n\n")    
+
+
+"""
+In excel Mary and I gathered the data regarding each of the 50 countries in Europe.
+We then used the pandas library in Python to parse the data and create a dataframe
+for each SQL table that we will want in the database.
+
+The following code is what we used to create each dataframe and subsequently
+export each dataframe into its own unique csv related to the table in our SQL database.
+This way we could clean, organize, and use the data in a more efficient manner as well
+as add it to our SQL database efficiently.
+
+
+def clean_country_list(file_name):
+    europe_data = pd.read_csv(file_name)
+    europe_data = europe_data[europe_data['continent'] == 'Europe']
+    selected_columns = ['country', 'currency', 'capital_city', 'region', 'gdp', 'population', 'democracy_type']
+    europe_data = europe_data[selected_columns]
+
+    # Fixing democracy type on major basis
+    democracy_mapping = {'Flawed democracy': 'Parliamentary democracy', 'Full democracy': 'Parliamentary democracy', 'Hybrid regime': 'Constitutional monarchy'}
+    europe_data['democracy_type'] = europe_data['democracy_type'].replace(democracy_mapping)
+
+    # Fixing democracy type
+    europe_data.loc[europe_data['country'] == 'Bosnia and herzegovina', 'country'] = 'Presidential republic'
+    europe_data.loc[europe_data['country'] == 'Turkey', 'democracy_type'] = 'Presidential republic'
+    europe_data.loc[europe_data['country'] == 'Cyprus', 'democracy_type'] = 'Presidential republic'
+    europe_data.loc[europe_data['country'] == 'Monaco', 'democracy_type'] = 'Constitutional monarchy'
+    europe_data.loc[europe_data['country'] == 'San Marino', 'democracy_type'] = 'Parlimentary democracy'
+    europe_data.loc[europe_data['country'] == 'Andorra', 'democracy_type'] = 'Parlimentary democracy'
+    europe_data.loc[europe_data['country'] == 'Liechtenstein', 'democracy_type'] = 'Semi-constitutional monarchy'
+
+    europe_data = europe_data.reset_index(drop=True)
+
+    # Add new Countries:
+    missing_countries_data = {'country': ['Armenia', 'Azerbaijan', 'Georgia', 'Kosovo', 'Turkey', 'Vatican City'],
+                      'currency': ['Armenian Dram', 'Azerbaijani Manat', 'Tbilisi', 'Euro', 'Turkish lira', 'Euro'],
+                      'capital_city': ['Yerevan', 'Baku', 'Tbilisi', 'Pristina', 'Ankara', 'Vatican City'],
+                      'region': ['Eastern Europe', 'Eastern Europe', 'Eastern Europe', 'Southeast Europe', 'Southeast Europe', 'Southern Europe'],
+                      'gdp': [58497000000, 192146000000, 82210000000, 27918000000, 3613000000000, 16195272],
+                      'population': [3000756, 10353296, 3688647, 1761985, 85279553, 764],
+                      'democracy_type': ['Parlimentary democracy', 'Presidential republic', 'Parlimentary democracy', 'Parlimentary democracy', 'Presidential republic', 'Monarchy']}
+    
+    missing_countries_df = pd.DataFrame(missing_countries_data)
+    new_europe_data = pd.concat([europe_data, missing_countries_df], ignore_index=True)
+    new_europe_data = new_europe_data.sort_values(by='country', ignore_index=True)
+
+    return new_europe_data
+
+def new_data(file_name):
+    different_data = pd.read_csv(file_name)
+    return different_data
+
 
 def create_country_table_csv(european_data_frame, additional_europe_data_frame):
     europe_data_selected = european_data_frame[['country', 'democracy_type']]
@@ -274,72 +337,7 @@ def create_national_security_table_csv(european_data_frame, additional_europe_da
     output_file_path = 'National_Security_table.csv'
     national_security_table.to_csv(output_file_path, index=False)
     return national_security_table
-
-def main():
-    intro_message()
-
-    returning_user_message()
-
-    print("\nHere is your unique User_ID: {}".format(user_id))
-
-    european_data = clean_country_list("All_countries.csv")
-
-    additional_europe_data_frame = new_data("data.csv")
-    # print(additional_europe_data_frame.columns)
-
-    country_table_df = create_country_table_csv(european_data, additional_europe_data_frame)
-    # print(Country_table_df)
-    economy_table_df = create_economy_table_csv(european_data, additional_europe_data_frame)
-    # print(economy_table_df)
-    capital_city_table_df = create_capital_city_table_csv(european_data, additional_europe_data_frame)
-    # print(capital_city_table_df)
-    tourist_attraction_table_df = create_tourist_attraction_table_csv(european_data, additional_europe_data_frame)
-    # print(tourist_attraction_table_df)
-    national_cuisine_table_df = create_national_cuisine_table_csv(european_data, additional_europe_data_frame)
-    # print(national_cuisine_table_df)
-    climate_table_df= create_climate_table_csv(european_data, additional_europe_data_frame)
-    # print(climate_table_df)
-    public_transportation_df = create_public_transportation_table_csv(european_data, additional_europe_data_frame)
-    # print(public_transportation_df)
-    national_secuirty_df = create_national_security_table_csv(european_data, additional_europe_data_frame)
-    # print(national_secuirty_df)
-
-
-
-    # for index, row in Country_table_df.iterrows():
-    # # Print the values in each row
-    #     print(f"Country: {row['name']}")
-    #     print(f"Democracy Type: {row['govt_struct']}")
-    #     print(f"Most Common Religion: {row['most_common_religion']}")
-    #     print(f"Language: {row['language']}")
-    #     print(f"Time Zone: {row['time_zone']}")
-    #     print("\n")
-
-
-    while True:
-        break
-        print_command_list()
-        user_input = input("Please enter your next command: ")
-
-        # each user_input should call a function that connects to the sql server
-        # does the sql call that we need, retreives the table, flushes the data and
-        # returns it in user friendly way
-        if user_input.lower() == "e":
-            break
-        elif user_input == "1":
-            print("add here connection to sql to retrieve country list")
-        elif user_input == "2":
-            print("add here connection to sql to retrieve entity list")
-        elif user_input == "3":
-            print("add here connection to sql to retrieve country info")
-        elif user_input == "4":
-            print("add here connection to sql to retrieve entity specific inof")
-        elif user_input == "5":
-            print("add here connection to sql to retrieve aggregate info on country")
-        else:
-            print("Your command did not match any of the acceptable ones...")
-    
-    print("\n\n\033[1;4m\t\tThank you for using our Travel Guide - Safe Travels\033[0m\n\n")    
+"""
 
 if __name__ == "__main__":
     main()
