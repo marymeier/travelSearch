@@ -15,6 +15,7 @@ def clean_country_list(file_name):
     europe_data['democracy_type'] = europe_data['democracy_type'].replace(democracy_mapping)
 
     # Fixing democracy type
+    europe_data.loc[europe_data['country'] == 'Bosnia and herzegovina', 'country'] = 'Presidential republic'
     europe_data.loc[europe_data['country'] == 'Turkey', 'democracy_type'] = 'Presidential republic'
     europe_data.loc[europe_data['country'] == 'Cyprus', 'democracy_type'] = 'Presidential republic'
     europe_data.loc[europe_data['country'] == 'Monaco', 'democracy_type'] = 'Constitutional monarchy'
@@ -92,6 +93,24 @@ def connect_travelSearch():
     cursor.execute('SELECT * FROM travelSearch.Capital_City')
     conn.commit
 
+def create_country_table_csv(european_data_frame, additional_europe_data_frame):
+    europe_data_selected = european_data_frame[['country', 'democracy_type']]
+    selected_columns_diff_db = ['country_name', 'most_common_religion', 'language', 'time_zone']
+    working_db = additional_europe_data_frame[selected_columns_diff_db]
+
+    Country_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
+    Country_table.drop(columns=['country_name'], inplace=True)
+    Country_table.sort_values(by='country', inplace=True)
+
+    desired_order = ['country', 'most_common_religion', 'language', 'democracy_type', 'time_zone']
+    new_column_names = {'country': 'name', 'democracy_type': 'govt_struct'}
+    Country_table = Country_table[desired_order]
+    Country_table = Country_table.rename(columns=new_column_names)
+
+    output_file_path = 'Country_table.csv'
+    Country_table.to_csv(output_file_path, index=False)
+    return(Country_table)
+
 def main():
     intro_message()
 
@@ -99,16 +118,21 @@ def main():
     print("\nHere is your unique User_ID: {}".format(user_id))
 
     european_data = clean_country_list("All_countries.csv")
-    # print(european_data)
 
-    # country_table = {'country': european_data['country'].tolist()}
+    additional_europe_data_frame = new_data("data.csv")
 
+    Country_table_df = create_country_table_csv(european_data, additional_europe_data_frame)
+    print(Country_table_df)
 
-    # print(country_table)
+    for index, row in Country_table_df.iterrows():
+    # Print the values in each row
+        print(f"Country: {row['name']}")
+        print(f"Democracy Type: {row['govt_struct']}")
+        print(f"Most Common Religion: {row['most_common_religion']}")
+        print(f"Language: {row['language']}")
+        print(f"Time Zone: {row['time_zone']}")
+        print("\n")
 
-    diff_db = new_data("data.csv")
-    headers = diff_db.columns
-    print(diff_db)
 
     while True:
         break

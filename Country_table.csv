@@ -1,0 +1,51 @@
+name,most_common_religion,language,govt_struct,time_zone
+Albania,Islam,Albanian,Constitutional monarchy,CET
+Andorra,Christianity,Catalan,Parlimentary democracy,CET
+Armenia,Christianity,Armenian,Parlimentary democracy,AMT
+Austria,Christianity,German,Parliamentary democracy,CET
+Azerbaijan,Islam,Azerbaijan,Presidential republic,AZT
+Belarus,Christianity,Russian,Authoritarian,MSK
+Belgium,Christianity,Dutch french german,Parliamentary democracy,CET
+Bosnia and Herzegovina,Islam,Bosnian croatian serbian,Constitutional monarchy,CET
+Bulgaria,Christianity,Bulgarian,Parliamentary democracy,EET
+Croatia,Christianity,Croatian,Parliamentary democracy,CET
+Cyprus,Christianity,Armenian,Presidential republic,EET
+Czech Republic,atheist,Czech,Parliamentary democracy,CET
+Denmark,Christianity,Danish,Parliamentary democracy,CET
+Estonia,N/a,Estonian,Parliamentary democracy,EET
+Finland,Christianity,Finnish,Parliamentary democracy,EET
+France,Christianity,French,Parliamentary democracy,CET
+Georgia,Christianity,Georgian,Parlimentary democracy,GET
+Germany,Christianity,German,Parliamentary democracy,CET
+Greece,Christianity,Greek,Parliamentary democracy,EET
+Hungary,Christianity,Hungarian,Parliamentary democracy,CET
+Iceland,Christianity,Icelandic,Parliamentary democracy,GMT/WET
+Ireland,Christianity,"English, irish",Parliamentary democracy,UTC
+Italy,Christianity,Italian,Parliamentary democracy,CET
+Kosovo,Islam,Albanian and serbian,Parlimentary democracy,CET
+Latvia,Christianity,Livonian and latgalian,Parliamentary democracy,EET
+Liechtenstein,Christianity,German,Semi-constitutional monarchy,CET
+Lithuania,Christianity,Lithuanian,Parliamentary democracy,EET
+Luxembourg,Christianity,"Luxembourgish, german, french",Parliamentary democracy,CET
+Malta,Christianity,"Maltese, english",Parliamentary democracy,CET
+Moldova,Christianity,Romanian,Constitutional monarchy,EET
+Monaco,Roman catholicism,French,Constitutional monarchy,CET
+Montenegro,Serbian orthodox church,"Montenegrin, serbian, bosnian, croatian, and albanian",Constitutional monarchy,CET
+Netherlands,atheist,Dutch,Parliamentary democracy,CET
+North Macedonia,Orthodox christianity,Macedonian and albanian,Constitutional monarchy,CET
+Norway,Evangelical lutheran church,Norwegian and sami,Parliamentary democracy,CET
+Poland,Catholic christians,Polish,Parliamentary democracy,CET
+Portugal,Catholic christian,Portuguese,Parliamentary democracy,WET
+Romania,Orthodox christian,Romanian,Parliamentary democracy,EET
+Russia,Russian orthodox church,Russian,Authoritarian,"MSK, YEKT, OMST, KRAT, IRKT, YAKT, VLAT, MAGT, PETT"
+San Marino,Catholic christian,Italian,Parlimentary democracy,CET
+Serbia,Serbian orthodoxy,Serbian,Parliamentary democracy,CET
+Slovak Republic,Roman catholic,Slovak,Parliamentary democracy,CET
+Slovenia,Christianity,Slovenian,Parliamentary democracy,CET
+Spain,Catholic christians,"Spanish, castilian spanish",Parliamentary democracy,CET
+Sweden,Church of sweden,Swedish/ svenska,Parliamentary democracy,CET
+Switzerland,Christianity,"Romansch, german, french, italian",Parliamentary democracy,CET
+Turkey,Islamic,Turkish,Presidential republic,TRT
+Ukraine,Eastern orthodox christian,Ukrainian,Constitutional monarchy,EET & MSK
+United Kingdom,Church of england,English,Parliamentary democracy,GMT & BST
+Vatican City,Catholicism,Italian and latin,Monarchy,CET
