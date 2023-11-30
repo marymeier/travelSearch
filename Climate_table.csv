@@ -1,0 +1,51 @@
+country,region_of_climate,season_to_travel,type_of_climate,avg_days_of_sun
+Albania,Tirana region,Summer,Mediterranean,300
+Andorra,Pyrenees,Summer,Oceanic,300
+Armenia,Ararat,Summer,Highland continental,300
+Austria,Vienna region,Spring,Humid continental,150
+Azerbaijan,South caucasus,Spring,Subtropical semi-arid,200
+Belarus,Minsk region,Summer,Humid continental,120
+Belgium,Brussels-capital,Spring,Mild maritime,120
+Bosnia and Herzegovina,Sarajevo canton,Summer,Continental,160
+Bulgaria,Sofia city province,Spring,Humid continental,160
+Croatia,City of zagreb administrative unit,Spring,Oceanic,160
+Cyprus,Nicosia district,Spring,Hot semi-arid,240
+Czech Republic,Capital city of prague,Summer,Oceanic,130
+Denmark,Capital region of denmark,Spring,Temperate,120
+Estonia,Harju county,Summer,Humid continental,120
+Finland,Uusimaa,Summer & fall,Humid continental,140
+France,Île-de-france,Spring & fall,Oceanic,140
+Georgia,Tbilisi,Summer,Humid subtropical,180
+Germany,Land berlin,Spring,Moderate continental,140
+Greece,Attica,Summer & fall,Hot mediterranean,240
+Hungary,Central hungary,Summer & fall,Humid subtropical,160
+Iceland,Capital region,Summer,Oceanic,120
+Ireland,Dublin region,Summer,Mild temperate oceanic,100
+Italy,Lazio,Spring & fall,Mediterranean,200
+Kosovo,Balkan,July,Oceanic,160
+Latvia,Rīgas plānošanas,Summer,Humid continental,120
+Liechtenstein,Unterland,Winter & summer,Oceanic,150
+Lithuania,Dzūkija,Late spring,Humid continental,130
+Luxembourg,N/a,Summer & fall,Oceanic,140
+Malta,Reġjun xlokk,Summer,Meditteranean,240
+Moldova,Balkan,Summer,Humid continental,170
+Monaco,"Principality of monaco, city-state",Spring & fall,Temperate mediterranean climate,305
+Montenegro,Central region,Summer,Humid subtropical climate,215
+Netherlands,North holland,Summer,Moderate maritime climate,155
+North Macedonia,Greater skopje,Spring,Subtropical,225
+Norway,Oslo metro,Summer,Humid continental climate,175
+Poland,Mazowieckie województwo province,Summer,Moderate climate,155
+Portugal,Lisbon region,Spring,Mild mediterranean climate,260
+Romania,Bucharest municipality,Spring/ summer,Humid continental climate,195
+Russia,Moscow oblast,Summer,Humid continental climate,155
+San Marino,N/a,Spring,Humid subtropical,235
+Serbia,Belegrade administrative region,Late spring,Moderate continental,210
+Slovak Republic,Bratislava region,Summer,Humid subtropical,175
+Slovenia,Ljubljana urban region,"Late summer, early fall","Oceanic, bordering on a humid subtropical climate",165
+Spain,Madrid provincia,Late spring,"Cold semi-arid climate, moderately continental",205
+Sweden,Stockholm region,Spring/ autumn,Humid continental climate,195
+Switzerland,Zürich district,Early summer,Temperate climate,165
+Turkey,Istanbul/constantinople region,Late spring,Humid subtropical climate and oceanic climate,235
+Ukraine,Kyiv oblast,Summer,Humid continental climate,155
+United Kingdom,Greater london region,Spring & autumn,Temperate oceanic climate,140
+Vatican City,Vatican city,Fall,"Temperate, mediterranean climate",225

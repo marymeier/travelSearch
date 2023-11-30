@@ -143,6 +143,60 @@ def create_capital_city_table_csv(european_data_frame, additional_europe_data_fr
     capital_city_table.to_csv(output_file_path, index=False)
     return capital_city_table
 
+def create_tourist_attraction_table_csv(european_data_frame, additional_europe_data_frame):
+    europe_data_selected = european_data_frame[['country']]
+    selected_columns_diff_db = ['country_name', 'capital_most_popular_nightlife_area', 'top_visited_tourist_attraction', 'capital_city_region']
+    working_db = additional_europe_data_frame[selected_columns_diff_db]
+
+    tourist_attraction_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
+    tourist_attraction_table.drop(columns=['country_name'], inplace=True)
+    tourist_attraction_table.sort_values(by='country', inplace=True)
+
+    desired_order = ['country', 'capital_most_popular_nightlife_area', 'top_visited_tourist_attraction', 'capital_city_region']
+    new_column_names = {'capital_most_popular_nightlife_area': 'most_popular_nightlife_area', 'capital_city_region': 'tourist_attraction_region'}
+    tourist_attraction_table = tourist_attraction_table[desired_order]
+    tourist_attraction_table = tourist_attraction_table.rename(columns=new_column_names)
+
+    output_file_path = 'Tourist_Attraction_table.csv'
+    tourist_attraction_table.to_csv(output_file_path, index=False)
+    return tourist_attraction_table
+
+def create_national_cuisine_table_csv(european_data_frame, additional_europe_data_frame):
+    europe_data_selected = european_data_frame[['country']]
+    selected_columns_diff_db = ['country_name', 'national_cuisine', 'food_classification', 'most_exported_food']
+    working_db = additional_europe_data_frame[selected_columns_diff_db]
+
+    national_cuisine_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
+    national_cuisine_table.drop(columns=['country_name'], inplace=True)
+    national_cuisine_table.sort_values(by='country', inplace=True)
+
+    desired_order = ['country', 'national_cuisine', 'food_classification', 'most_exported_food']
+    new_column_names = {'national_cuisine': 'dish_name'}
+    national_cuisine_table = national_cuisine_table[desired_order]
+    national_cuisine_table = national_cuisine_table.rename(columns=new_column_names)
+
+    output_file_path = 'National_Cuisine_table.csv'
+    national_cuisine_table.to_csv(output_file_path, index=False)
+    return national_cuisine_table
+
+def create_climate_table_csv(european_data_frame, additional_europe_data_frame):
+    europe_data_selected = european_data_frame[['country']]
+    selected_columns_diff_db = ['country_name', 'season_to_travel', 'type_of_climate', 'avg_days_of_sun', 'capital_city_region']
+    working_db = additional_europe_data_frame[selected_columns_diff_db]
+
+    climate_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
+    climate_table.drop(columns=['country_name'], inplace=True)
+    climate_table.sort_values(by='country', inplace=True)
+
+    desired_order = ['country', 'capital_city_region', 'season_to_travel', 'type_of_climate', 'avg_days_of_sun']
+    new_column_names = {'capital_city_region': 'region_of_climate'}
+    climate_table = climate_table[desired_order]
+    climate_table = climate_table.rename(columns=new_column_names)
+
+    output_file_path = 'Climate_table.csv'
+    climate_table.to_csv(output_file_path, index=False)
+    return climate_table
+
 def main():
     intro_message()
 
@@ -159,7 +213,14 @@ def main():
     economy_table_df = create_economy_table_csv(european_data, additional_europe_data_frame)
     # print(economy_table_df)
     capital_city_table_df = create_capital_city_table_csv(european_data, additional_europe_data_frame)
-    print(capital_city_table_df)
+    # print(capital_city_table_df)
+    tourist_attraction_table_df = create_tourist_attraction_table_csv(european_data, additional_europe_data_frame)
+    # print(tourist_attraction_table_df)
+    national_cuisine_table_df = create_national_cuisine_table_csv(european_data, additional_europe_data_frame)
+    # print(national_cuisine_table_df)
+    climate_table_df= create_climate_table_csv(european_data, additional_europe_data_frame)
+    print(climate_table_df)
+
 
 
 
