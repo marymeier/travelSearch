@@ -1,4 +1,5 @@
 import pandas as pd
+import sqlite3
 
 # Global Variables
 user_id = ""
@@ -79,6 +80,13 @@ def set_user_id():
     global user_id
     user_id = user_first_name[0] + user_last_name
 
+def connect_travelSearch():
+    # Connect to sqlite and create tables needed
+    conn = sqlite3.connect('travelSearch.db')
+
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM travelSearch.Capital_City')
+    conn.commit
 
 def main():
     intro_message()
