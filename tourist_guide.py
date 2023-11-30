@@ -55,6 +55,32 @@ def intro_message():
          "\n\t\t- Economy" +
          "\n\t\t- Tourist Attractions" +
          "\n\t\t- National Security Situation, as related to travel")
+    
+
+
+# Ask if you're a new or existing user. If they are not create one given their name. If they exist ask for userID.
+
+# - clean all user inputs for username so they can't enter sql commands
+
+# Sql create new user. Create a role that's just visitor with privilege to see everything but user table.
+# Create one for yourself that's admin role with all privileges
+def returning_user_message():
+    print("\n\n\033[1;4m\t\tBefore you enter our guide we need to validate your account\033[0m\n")
+    
+    while True:
+        user_input = input("Are you an existing user? [Y/N or Yes/No]\n").lower()
+
+        if user_input in ['y', 'yes']:
+            print("Great, you are an existing user.")
+            global user_id
+            user_id = input("Please enter your user id:\n")
+            break
+        elif user_input in ['n', 'no']:
+            print("\nWelcome new user!")
+            set_user_id()
+            break
+        else:
+            print("Sorry you entered an invalid input. Please enter 'Y' or 'N' or 'Yes' or 'No'. \033[1m(not case sensitive)\033[0m")
 
 
 def print_command_list():
@@ -76,14 +102,27 @@ def print_command_list():
           "\n\t\t- To view everything regarding a country")
 
 
+def is_alphabetical(input_str):
+    return input_str.isalpha()
+
 def set_user_id():
     print("\nLet's begin by making you an account!")
+    print("\033[1mYour user name must only include alphabetical letters and nothing else!\033[0m")
     
     user_first_name = input("Please enter your first name:\n")
+    while not is_alphabetical(user_first_name):
+        print("\033[1mInvalid input.\033[0m Your first name must only include alphabetical letters.")
+        user_first_name = input("Please enter your first name:\n")
+
     user_last_name = input("Please enter your last name:\n")
+    while not is_alphabetical(user_last_name):
+        print("\033[1mInvalid input.\033[0m Your last name must only include alphabetical letters.")
+        user_last_name = input("Please enter your last name:\n")
+    
 
     global user_id
     user_id = user_first_name[0] + user_last_name
+    # SQL Code to CREATE USER 'user_id'
 
 def connect_travelSearch():
     # Connect to sqlite and tableSearch database
@@ -144,15 +183,16 @@ def create_capital_city_table_csv(european_data_frame, additional_europe_data_fr
     return capital_city_table
 
 def create_tourist_attraction_table_csv(european_data_frame, additional_europe_data_frame):
-    europe_data_selected = european_data_frame[['country']]
+    europe_data_selected = european_data_frame[['country', 'capital_city']]
     selected_columns_diff_db = ['country_name', 'capital_most_popular_nightlife_area', 'top_visited_tourist_attraction', 'capital_city_region']
     working_db = additional_europe_data_frame[selected_columns_diff_db]
 
     tourist_attraction_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
     tourist_attraction_table.drop(columns=['country_name'], inplace=True)
-    tourist_attraction_table.sort_values(by='country', inplace=True)
+    tourist_attraction_table.drop(columns=['country'], inplace=True)
+    tourist_attraction_table.sort_values(by='capital_city', inplace=True)
 
-    desired_order = ['country', 'capital_most_popular_nightlife_area', 'top_visited_tourist_attraction', 'capital_city_region']
+    desired_order = ['capital_city', 'capital_most_popular_nightlife_area', 'top_visited_tourist_attraction', 'capital_city_region']
     new_column_names = {'capital_most_popular_nightlife_area': 'most_popular_nightlife_area', 'capital_city_region': 'tourist_attraction_region'}
     tourist_attraction_table = tourist_attraction_table[desired_order]
     tourist_attraction_table = tourist_attraction_table.rename(columns=new_column_names)
@@ -180,15 +220,16 @@ def create_national_cuisine_table_csv(european_data_frame, additional_europe_dat
     return national_cuisine_table
 
 def create_climate_table_csv(european_data_frame, additional_europe_data_frame):
-    europe_data_selected = european_data_frame[['country']]
+    europe_data_selected = european_data_frame[['country', 'capital_city']]
     selected_columns_diff_db = ['country_name', 'season_to_travel', 'type_of_climate', 'avg_days_of_sun', 'capital_city_region']
     working_db = additional_europe_data_frame[selected_columns_diff_db]
 
     climate_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
     climate_table.drop(columns=['country_name'], inplace=True)
-    climate_table.sort_values(by='country', inplace=True)
+    climate_table.drop(columns=['country'], inplace=True)
+    climate_table.sort_values(by='capital_city', inplace=True)
 
-    desired_order = ['country', 'capital_city_region', 'season_to_travel', 'type_of_climate', 'avg_days_of_sun']
+    desired_order = ['capital_city', 'capital_city_region', 'season_to_travel', 'type_of_climate', 'avg_days_of_sun']
     new_column_names = {'capital_city_region': 'region_of_climate'}
     climate_table = climate_table[desired_order]
     climate_table = climate_table.rename(columns=new_column_names)
@@ -197,16 +238,54 @@ def create_climate_table_csv(european_data_frame, additional_europe_data_frame):
     climate_table.to_csv(output_file_path, index=False)
     return climate_table
 
+def create_public_transportation_table_csv(european_data_frame, additional_europe_data_frame):
+    europe_data_selected = european_data_frame[['country']]
+    selected_columns_diff_db = ['country_name', 'most_used_public_transportation', 'public_transportation_owned_by', 'avg_price_of_public_transportation', 'types_of_public_transportation']
+    working_db = additional_europe_data_frame[selected_columns_diff_db]
+
+    public_transportation_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
+    public_transportation_table.drop(columns=['country_name'], inplace=True)
+    public_transportation_table.sort_values(by='country', inplace=True)
+
+    desired_order = ['country', 'most_used_public_transportation', 'public_transportation_owned_by', 'avg_price_of_public_transportation', 'types_of_public_transportation']
+    new_column_names = {'most_used_public_transportation': 'most_used', 'public_transportation_owned_by': 'owned_by', 'avg_price_of_public_transportation': 'avg_price'}
+    public_transportation_table = public_transportation_table[desired_order]
+    public_transportation_table = public_transportation_table.rename(columns=new_column_names)
+
+    output_file_path = 'Public_Transportation_table.csv'
+    public_transportation_table.to_csv(output_file_path, index=False)
+    return public_transportation_table
+
+def create_national_security_table_csv(european_data_frame, additional_europe_data_frame):
+    europe_data_selected = european_data_frame[['country']]
+    selected_columns_diff_db = ['country_name', 'economic_world_ranking', 'homicide_rate', 'global_peace_index', 'avg_larceny', 'police_force']
+    working_db = additional_europe_data_frame[selected_columns_diff_db]
+
+    national_security_table = pd.merge(europe_data_selected, working_db,left_on='country', right_on='country_name', how = 'inner')
+    national_security_table.drop(columns=['country_name'], inplace=True)
+    national_security_table.drop(columns=['country'], inplace=True)
+    national_security_table.sort_values(by='economic_world_ranking', inplace=True)
+
+    desired_order = ['economic_world_ranking', 'homicide_rate', 'global_peace_index', 'avg_larceny', 'police_force']
+    new_column_names = {'homicide_rate': 'homicide_rate_per_100000', 'avg_larceny': 'avg_larceny_per_100000'}
+    national_security_table = national_security_table[desired_order]
+    national_security_table = national_security_table.rename(columns=new_column_names)
+
+    output_file_path = 'National_Security_table.csv'
+    national_security_table.to_csv(output_file_path, index=False)
+    return national_security_table
+
 def main():
     intro_message()
 
-    set_user_id()
+    returning_user_message()
+
     print("\nHere is your unique User_ID: {}".format(user_id))
 
     european_data = clean_country_list("All_countries.csv")
 
     additional_europe_data_frame = new_data("data.csv")
-    print(additional_europe_data_frame.columns)
+    # print(additional_europe_data_frame.columns)
 
     country_table_df = create_country_table_csv(european_data, additional_europe_data_frame)
     # print(Country_table_df)
@@ -219,8 +298,11 @@ def main():
     national_cuisine_table_df = create_national_cuisine_table_csv(european_data, additional_europe_data_frame)
     # print(national_cuisine_table_df)
     climate_table_df= create_climate_table_csv(european_data, additional_europe_data_frame)
-    print(climate_table_df)
-
+    # print(climate_table_df)
+    public_transportation_df = create_public_transportation_table_csv(european_data, additional_europe_data_frame)
+    # print(public_transportation_df)
+    national_secuirty_df = create_national_security_table_csv(european_data, additional_europe_data_frame)
+    # print(national_secuirty_df)
 
 
 
