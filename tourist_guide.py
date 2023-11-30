@@ -55,6 +55,32 @@ def intro_message():
          "\n\t\t- Economy" +
          "\n\t\t- Tourist Attractions" +
          "\n\t\t- National Security Situation, as related to travel")
+    
+
+
+# Ask if you're a new or existing user. If they are not create one given their name. If they exist ask for userID.
+
+# - clean all user inputs for username so they can't enter sql commands
+
+# Sql create new user. Create a role that's just visitor with privilege to see everything but user table.
+# Create one for yourself that's admin role with all privileges
+def returning_user_message():
+    print("\n\n\033[1;4m\t\tBefore you enter our guide we need to validate your account\033[0m\n")
+    
+    while True:
+        user_input = input("Are you an existing user? [Y/N or Yes/No]\n").lower()
+
+        if user_input in ['y', 'yes']:
+            print("Great, you are an existing user.")
+            global user_id
+            user_id = input("Please enter your user id:\n")
+            break
+        elif user_input in ['n', 'no']:
+            print("\nWelcome new user!")
+            set_user_id()
+            break
+        else:
+            print("Sorry you entered an invalid input. Please enter 'Y' or 'N' or 'Yes' or 'No'. \033[1m(not case sensitive)\033[0m")
 
 
 def print_command_list():
@@ -76,14 +102,27 @@ def print_command_list():
           "\n\t\t- To view everything regarding a country")
 
 
+def is_alphabetical(input_str):
+    return input_str.isalpha()
+
 def set_user_id():
     print("\nLet's begin by making you an account!")
+    print("\033[1mYour user name must only include alphabetical letters and nothing else!\033[0m")
     
     user_first_name = input("Please enter your first name:\n")
+    while not is_alphabetical(user_first_name):
+        print("\033[1mInvalid input.\033[0m Your first name must only include alphabetical letters.")
+        user_first_name = input("Please enter your first name:\n")
+
     user_last_name = input("Please enter your last name:\n")
+    while not is_alphabetical(user_last_name):
+        print("\033[1mInvalid input.\033[0m Your last name must only include alphabetical letters.")
+        user_last_name = input("Please enter your last name:\n")
+    
 
     global user_id
     user_id = user_first_name[0] + user_last_name
+    # SQL Code to CREATE USER 'user_id'
 
 def connect_travelSearch():
     # Connect to sqlite and tableSearch database
@@ -239,13 +278,14 @@ def create_national_security_table_csv(european_data_frame, additional_europe_da
 def main():
     intro_message()
 
-    set_user_id()
+    returning_user_message()
+
     print("\nHere is your unique User_ID: {}".format(user_id))
 
     european_data = clean_country_list("All_countries.csv")
 
     additional_europe_data_frame = new_data("data.csv")
-    print(additional_europe_data_frame.columns)
+    # print(additional_europe_data_frame.columns)
 
     country_table_df = create_country_table_csv(european_data, additional_europe_data_frame)
     # print(Country_table_df)
