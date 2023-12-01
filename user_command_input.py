@@ -45,7 +45,7 @@ def print_command_list():
     print("\t\033[1mEnter 'add cuisine rating'\033[0m" +
           "\n\t\t- You can your national cuisine rating based on past experience" +
           "\n\t\t- Example 'add cuisine rating'\n")
-    print("\t\033[1mEnter 'delete cusine rating'\033[0m" +
+    print("\t\033[1mEnter 'delete cuisine rating'\033[0m" +
           "\n\t\t- Removes a previously added national cuisine rating" +
           "\n\t\t- Example 'delete cusine rating'\n")
 
@@ -114,7 +114,6 @@ def add_fun_fact():
     user_input = input("\n\t\tAre you sure you want to add this fact? [y/n]\n\t")
     user_input.lower()
     if user_input in ['y', 'yes']:
-        print("\n\t\tGreat! Thanks for adding that fact! You can delete it at any time.\n\t")
         user_db_commands.insert_tourist_attraction_fun_fact(initial_user_housekeeping.get_user_id(), country_name, fun_fact)
     else:
         print("Okay, it will not be added. You can add another at any time.")
@@ -136,10 +135,40 @@ def add_econ_cost():
     user_input = input("\n\t\tAre you sure you want to add this cost of stay? [y/n]\n\t")
     user_input.lower()
     if user_input in ['y', 'yes']:
-        print("\n\t\tGreat! Thanks for adding! You can delete it at any time.\n\t")
         user_db_commands.insert_economic_cost_of_stay(initial_user_housekeeping.get_user_id(), country_name, cost_of_stay)
     else:
         print("Okay, it will not be added. You can add another at any time.")
+        
+def delete_econ_cost():
+    country_name = input("\n\t\tWhat country do you want to delete your estimated cost of stay from?\n\t")
+
+    user_input = input("\n\t\tAre you sure you want to delete your estimated cost of stay for this country? [y/n]\n\t")
+    user_input.lower()
+    if user_input in ['y', 'yes']:
+        user_db_commands.delete_economic_cost_of_stay(initial_user_housekeeping.get_user_id(), country_name)
+    else:
+        print("Okay, it will not be deleted. You can come back to delete it at any time.")
+        
+def add_cuisine_rating():
+    country_name = input("\n\t\tWhat country do you want to add your rating of their national cuisine to?\n\t")
+    rating = input("\n\t\tWhat is your rating on a scale of 1-10 (1 being the worst and 10 being the best)\n\t")
+    
+    user_input = input("\n\t\tAre you sure you want to add this rating? [y/n]\n\t")
+    user_input.lower()
+    if user_input in ['y', 'yes']:
+        user_db_commands.insert_national_cuisine_rating(initial_user_housekeeping.get_user_id(), country_name, rating)
+    else:
+        print("Okay, it will not be added. You can add another at any time.")
+
+def delete_cuisine_rating():
+    country_name = input("\n\t\tWhat country was the rating for?\n\t")
+    
+    user_input = input("\n\t\tAre you sure you want to delete this rating? [y/n]\n\t")
+    user_input.lower()
+    if user_input in ['y', 'yes']:
+        user_db_commands.delete_national_cuisine_rating(initial_user_housekeeping.get_user_id(), country_name)
+    else:
+        print("Okay, it will not be deleted. You can come back to delete it at any time.")
 
 def user_command_loop():
     country_list = overall_country_queries.query_country_names()
@@ -172,6 +201,12 @@ def user_command_loop():
             delete_fun_fact()
         elif user_input in ['add econ cost', 'econ cost', 'add cost of stay']:
             add_econ_cost()
+        elif user_input in ['delete econ cost']:
+            delete_econ_cost()
+        elif user_input in ['add cuisine rating', 'cuisine rating', 'rate']:
+            add_cuisine_rating()
+        elif user_input in ['delete cuisine rating']:
+            delete_cuisine_rating()
         else:
             print("Your command did not match any of the acceptable ones...")
             print("You may have mispelled a country or request.")
