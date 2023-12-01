@@ -1,6 +1,29 @@
 import sqlite3
 import csv
 
+def create_users_table():
+    # Connect to sqlite and connect to tableSearch database
+    connection = sqlite3.connect('travelSearch.db')
+    # Cursor object
+    cursor = connection.cursor()
+    # Start us with a clean slate and rebuilds a User table if it already exists
+    cursor.execute('DROP TABLE IF EXISTS Users')
+    create_users_table = """CREATE TABLE Users (
+                            user_id INT NOT NULL,
+                            country_name VARCHAR(50),
+                            tourist_attraction_fun_fact VARCHAR(200),
+                            economic_cost_of_stay FLOAT,
+                            national_cuisine_rating FLOAT,
+                            PRIMARY KEY(user_id, country_name),
+                            FOREIGN KEY (country_name)
+                                REFERENCES Country(name)
+                            );
+                            """
+    cursor.execute(create_users_table)
+
+    connection.commit()
+    connection.close()
+
 def create_and_populate_country_table():
     # Connect to sqlite and connect to tableSearch database
     connection = sqlite3.connect('travelSearch.db')
@@ -28,7 +51,7 @@ def create_and_populate_country_table():
         insert_records = "INSERT INTO Country (name, most_common_religion, official_language, government_struct, time_zone) VALUES (?,?,?,?,?)"
         cursor.executemany(insert_records, contents)
     
-    # This is just to validate we have the country correctly:
+    # # This is just to validate we have the country correctly:
     # select_all = "SELECT * FROM Country"
     # rows = cursor.execute(select_all).fetchall()
     # for r in rows:
@@ -303,6 +326,8 @@ def create_and_populate_climate_table():
 
 # Private function
 def _initialize_sql_tables():
+    create_users_table()
+
     create_and_populate_country_table()
     create_and_populate_capital_city_table()
     create_and_populate_public_transportation_table()

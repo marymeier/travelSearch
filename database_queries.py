@@ -100,7 +100,7 @@ def query_public_transportation_attributes(user_inputted_country_name):
 
     return user_output
 
-def query_national_cuisine_attributes(user_inputted_country_name):
+def query_national_cuisine_attributes(user_id, user_inputted_country_name):
     connection = sqlite3.connect('travelSearch.db')
     cursor = connection.cursor()
 
@@ -117,6 +117,10 @@ def query_national_cuisine_attributes(user_inputted_country_name):
     cursor.execute(select_query, (country_name,))
 
     result = cursor.fetchone()
+
+    national_cuisine_rating_query = f"SELECT national_cuisine_rating FROM Users WHERE user_id = '{user_id}' AND country_name = ?"
+    cursor.execute(national_cuisine_rating_query, (country_name,))
+    rating_result = cursor.fetchone()
     
     if result:
         user_output = {"Country Name": result[0],
@@ -124,6 +128,11 @@ def query_national_cuisine_attributes(user_inputted_country_name):
                     "Food Classification": result[2],
                     "Most Exported Food": result[3],
                     }
+        # Include national_cuisine_rating if it exists, otherwise add a user message
+        if rating_result and rating_result[0] is not None:
+            user_output["User National Cuisine Rating (0-10)"] = rating_result[0]
+        else:
+            user_output["User National Cuisine Rating (0-10)"] = f"No rating currently exists for {user_id}"
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
@@ -131,7 +140,7 @@ def query_national_cuisine_attributes(user_inputted_country_name):
 
     return user_output
 
-def query_economy_attributes(user_inputted_country_name):
+def query_economy_attributes(user_id, user_inputted_country_name):
     connection = sqlite3.connect('travelSearch.db')
     cursor = connection.cursor()
 
@@ -150,6 +159,10 @@ def query_economy_attributes(user_inputted_country_name):
     cursor.execute(select_query, (country_name,))
 
     result = cursor.fetchone()
+
+    economic_cost_of_stay_query = f"SELECT economic_cost_of_stay FROM Users WHERE user_id = '{user_id}' AND country_name = ?"
+    cursor.execute(economic_cost_of_stay_query, (country_name,))
+    rating_result = cursor.fetchone()
     
     if result:
         user_output = {"Country Name": result[0],
@@ -159,6 +172,11 @@ def query_economy_attributes(user_inputted_country_name):
                     "Currency": result[4],
                     "Country's Largest Industry": result[5].title()
                     }
+        # Include economic_cost_of_stay if it exists, otherwise add a user message
+        if rating_result and rating_result[0] is not None:
+            user_output["User Estimated Economic Cost of One Week Stay"] = f"${rating_result[0]}"
+        else:
+            user_output["User Estimated Economic Cost of One Week Stay"] = f"No rating currently exists for {user_id}"
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
@@ -202,7 +220,7 @@ def query_national_security_attributes(user_inputted_country_name):
 
     return user_output
 
-def query_tourist_attractions_attributes(user_inputted_country_name):
+def query_tourist_attractions_attributes(user_id, user_inputted_country_name):
     connection = sqlite3.connect('travelSearch.db')
     cursor = connection.cursor()
 
@@ -223,6 +241,10 @@ def query_tourist_attractions_attributes(user_inputted_country_name):
     cursor.execute(select_query, (country_name,))
 
     result = cursor.fetchone()
+
+    tourist_attraction_fun_fact_query = f"SELECT tourist_attraction_fun_fact FROM Users WHERE user_id = '{user_id}' AND country_name = ?"
+    cursor.execute(tourist_attraction_fun_fact_query, (country_name,))
+    rating_result = cursor.fetchone()
     
     if result:
         user_output = {"Country Name": country_name,
@@ -231,6 +253,11 @@ def query_tourist_attractions_attributes(user_inputted_country_name):
                     "Tourist Attraction Region": result[2].title(),
                     "Most Popular Nightlife Area": result[3].title(),
                     }
+         # Include tourist_attraction_fun_fact if it exists, otherwise add a user message
+        if rating_result and rating_result[0] is not None:
+            user_output["User Tourist Attraction Fun Fact"] = f"{rating_result[0]}"
+        else:
+            user_output["User Tourist Attraction Fun Fact"] = f"No rating currently exists for {user_id}"
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
@@ -277,37 +304,37 @@ def query_climate_attributes(user_inputted_country_name):
     return user_output
 
 def main():
-    print("\n\nCountry Attributes:")
-    for key, value in query_country_attributes("hungary").items():
-        print(f"{key:25}{value:}")
+    # print("\n\nCountry Attributes:")
+    # for key, value in query_country_attributes("hungary").items():
+    #     print(f"{key:25}{value:}")
 
-    print("\n\ncapital city attributes:\n")
-    for key, value in query_capital_city_attributes("romania").items():
-        print(f"{key:25}{value}")
+    # print("\n\ncapital city attributes:\n")
+    # for key, value in query_capital_city_attributes("romania").items():
+    #     print(f"{key:25}{value}")
     
-    print("\n\npublic transportation attributes:\n")
-    for key, value in query_public_transportation_attributes("united kingdom").items():
-        print(f"{key:35}{value}")
+    # print("\n\npublic transportation attributes:\n")
+    # for key, value in query_public_transportation_attributes("united kingdom").items():
+    #     print(f"{key:35}{value}")
 
     print("\n\nnational cuisine attributes:\n")
-    for key, value in query_national_cuisine_attributes("germany").items():
-        print(f"{key:25}{value}")
+    for key, value in query_national_cuisine_attributes("rschor", "germany").items():
+        print(f"{key:45}{value}")
 
     print("\n\nEconomy attributes:\n")
-    for key, value in query_economy_attributes("denmark").items():
-        print(f"{key:38}{value}")
+    for key, value in query_economy_attributes("rschor", "germany").items():
+        print(f"{key:55}{value}")
 
-    print("\n\nNational Security:\n")
-    for key, value in query_national_security_attributes("spain").items():
-        print(f"{key:40}{value}")
+    # print("\n\nNational Security:\n")
+    # for key, value in query_national_security_attributes("spain").items():
+    #     print(f"{key:40}{value}")
 
     print("\n\nTourist Attractions:\n")
-    for key, value in query_tourist_attractions_attributes("italy").items():
+    for key, value in query_tourist_attractions_attributes("rschor", "germany").items():
         print(f"{key:40}{value}")
 
-    print("\n\nClimate:\n")
-    for key, value in query_climate_attributes("switzerland").items():
-        print(f"{key:35}{value}")
+    # print("\n\nClimate:\n")
+    # for key, value in query_climate_attributes("switzerland").items():
+    #     print(f"{key:35}{value}")
 
 if __name__ == "__main__":
     main()

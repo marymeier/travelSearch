@@ -1,20 +1,13 @@
-# import pandas as pd
-import sqlite3
+import user_db_commands
+import database_queries
+import overall_country_queries
 
 # Global Variables
 user_id = ""
 
-# def connect_travelSearch():
-#     # Connect to sqlite and tableSearch database
-#     conn = sqlite3.connect('travelSearch.db')
-
-#     cursor = conn.cursor()
-#     cursor.execute('SELECT * FROM travelSearch.Capital_City')
-#     conn.commit
-
 # Introduction message for a new or existing user once they enter our guide
 def intro_message():
-    print("\n\033[1;4m\t\tWelcome to the European Travel and Information Guide\033[0m\n")
+    print("\n\n\n\033[1;4m\t\tWelcome to the European Travel and Information Guide\033[0m\n")
     print("\tHere will be a travel guide that details information regarding a country\n\t" + 
           "and its capital city. In addition, the guide shoulde provide you with\n\t" +
           "information regarding the countries':")
@@ -28,7 +21,7 @@ def intro_message():
 
 # Sql create new user. Create a role that's just visitor with privilege to see everything but user table.
 # Create one for yourself that's admin role with all privileges
-def returning_user_message():
+def user_log_in_message():
     print("\n\n\033[1;4m\t\tBefore you enter our guide we need to validate your account\033[0m\n")
     
     while True:
@@ -86,6 +79,7 @@ def set_user_id():
     
     global user_id
     user_id = user_first_name[0] + user_last_name
+    user_id = user_id.lower()
 
     # SQL Code to CREATE USER 'user_id'
 
@@ -111,7 +105,7 @@ def main():
     """
     intro_message()
 
-    returning_user_message()
+    user_log_in_message()
 
     print("\nHere is your unique User_ID: {}".format(user_id))
 
