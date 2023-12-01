@@ -77,7 +77,7 @@ def print_entity_list():
         "\n\t\t\t- Example: \033[1m'Italy Economy'\033[0m or \033[1m'Norway Climate'\033[0m or \033[1m'Russia econ'\033[0m")
 
 def print_country_specific_info(user_input):
-    country, specific_table = user_input.split()[0].title(), user_input.split()[1]
+    country, specific_table = user_input.split()[0].title(), user_input.split()[1].lower()
     if specific_table in ['capital city', 'capital_city']:
         print("\n\t\tcapital city attributes:\n")
         for key, value in database_queries.query_capital_city_attributes(country).items():
@@ -208,8 +208,8 @@ def user_command_loop():
         elif user_input in ['delete cuisine rating']:
             delete_cuisine_rating()
         else:
-            print("Your command did not match any of the acceptable ones...")
-            print("You may have mispelled a country or request.")
+            print("\n\t\tYour command did not match any of the acceptable ones...")
+            print("\n\t\tYou may have mispelled a country or request.")
 
 
     # Need to add functionality for last 6 commands the 3 add ratings and 3 delete ratings
