@@ -109,7 +109,7 @@ def print_country_specific_info(user_input):
     else:
         print("\n\t\tNational Security:\n")
         for key, value in database_queries.query_national_security_attributes(country).items():
-            print(f"{key:40}{value}")
+            print(f"\t\t{key:40}{value}")
             
 def add_fun_fact():
     country_name = input("\n\t\tLet's add your fun fact! First, which country do you want to add a fun fact about? \n\t")

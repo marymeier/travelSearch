@@ -300,3 +300,4 @@ def query_climate_attributes(user_inputted_country_name):
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
     connection.close()
+    return user_output
