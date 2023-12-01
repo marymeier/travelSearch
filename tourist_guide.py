@@ -11,7 +11,7 @@ def main():
 
     user_command_input.user_command_loop()
     
-    print("\n\n\n\033[1;4m\t\tThank you for using our Travel Guide - Safe Travels\033[0m\n\n\n")    
+    print("\n\n\n\t\t\033[1;4mThank you for using our Travel Guide - Safe Travels\033[0m\n\n\n")    
 
 
 """
