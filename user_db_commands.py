@@ -26,7 +26,7 @@ def create_new_user(user_id):
     existing_user = cursor.fetchone()
 
     if existing_user:
-        print(f"A user with the user_id  \033[1m'{user_id}'\033[0m already exists")
+        print(f"\n\t\tA user with the user_id  \033[1m'{user_id}'\033[0m already exists")
         connection.close()
         return False
     else:
@@ -90,7 +90,7 @@ def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction
 
     available_countries = overall_country_queries.query_country_names()
     if country_name.title() not in available_countries:
-        print(f"Error: {country_name} is not a valid country. Please enter a valid country")
+        print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
         connection.close()
         return False
 
@@ -104,7 +104,7 @@ def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction
         # If a record exists, check if tourist_attraction_fun_fact is already set
         if existing_record[2] is not None:
             # If tourist_attraction_fun_fact already exists, ask the user if they want to update it
-            update_confirmation = input(f"A tourist attraction fun fact already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no): ")
+            update_confirmation = input(f"\n\t\tA tourist attraction fun fact already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no): ")
             
             if update_confirmation.lower() == 'yes':
                 # Update existing tourist_attraction_fun_fact
@@ -116,11 +116,12 @@ def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction
         else:
             # Insert tourist_attraction_fun_fact if it doesn't exist
             update_command = f"UPDATE Users SET tourist_attraction_fun_fact = '{tourist_attraction_fun_fact}' WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
+            # update_command = f"INSERT INTO Users (user_id, country_name, tourist_attraction_fun_fact) VALUES ('{user_id}', '{country_name}', '{tourist_attraction_fun_fact}')"
             cursor.execute(update_command)
             print("\n\t\tTourist attraction fun fact inserted successfully.\n\t")
     else:
         # If no record exists, insert a new record
-        insert_command = f"UPDATE Users SET country_name = '{country_name}', tourist_attraction_fun_fact = '{tourist_attraction_fun_fact}' WHERE user_id = '{user_id}'"
+        insert_command = f"INSERT INTO Users (user_id, country_name, tourist_attraction_fun_fact) VALUES ('{user_id}', '{country_name}', '{tourist_attraction_fun_fact}')"
         cursor.execute(insert_command)
         print("\n\t\tNew Tourist Attraction Fun Fact inserted successfully.\n\t")
 
@@ -136,7 +137,7 @@ def delete_tourist_attraction_fun_fact(user_id, country_name):
 
     available_countries = overall_country_queries.query_country_names()
     if country_name not in available_countries:
-        print(f"Error: {country_name} is not a valid country. Please enter a valid country")
+        print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
         connection.close()
         return False
 
@@ -170,7 +171,7 @@ def insert_economic_cost_of_stay(user_id, country_name, economic_cost_of_stay):
 
     available_countries = overall_country_queries.query_country_names()
     if country_name.title() not in available_countries:
-        print(f"Error: {country_name} is not a valid country. Please enter a valid country")
+        print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
         connection.close()
         return False
 
@@ -184,7 +185,7 @@ def insert_economic_cost_of_stay(user_id, country_name, economic_cost_of_stay):
         # If a record exists, check if economic_cost_of_stay is already set
         if existing_record[3] is not None:
             # If economic_cost_of_stay already exists, ask the user if they want to update it
-            update_confirmation = input(f"An estimated economic cost of stay for a week already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no): ")
+            update_confirmation = input(f"\n\t\tAn estimated economic cost of stay for a week already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no): ")
             
             if update_confirmation.lower() == 'yes':
                 # Update existing economic_cost_of_stay
@@ -200,7 +201,8 @@ def insert_economic_cost_of_stay(user_id, country_name, economic_cost_of_stay):
             print("\n\t\tYour estimated economic cost of stay for a week was inserted successfully.\n\t")
     else:
         # If no record exists, insert a new record
-        insert_command = f"UPDATE Users SET country_name = '{country_name}', economic_cost_of_stay = '{economic_cost_of_stay}' WHERE user_id = '{user_id}'"
+        insert_command = f"INSERT INTO Users (user_id, country_name, economic_cost_of_stay) VALUES ('{user_id}', '{country_name}', '{economic_cost_of_stay}')"
+        # insert_command = f"UPDATE Users SET country_name = '{country_name}', economic_cost_of_stay = '{economic_cost_of_stay}' WHERE user_id = '{user_id}'"
         cursor.execute(insert_command)
         print("\n\t\tYour new Estimated economic cost of stay for a week was inserted successfully.\n\t")
 
@@ -264,7 +266,7 @@ def insert_national_cuisine_rating(user_id, country_name, national_cuisine_ratin
         # If a record exists, check if national_cuisine_rating is already set
         if existing_record[4] is not None:
             # If national_cuisine_rating already exists, ask the user if they want to update it
-            update_confirmation = input(f"A national cuisine rating already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no): ")
+            update_confirmation = input(f"\n\t\tA national cuisine rating already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no): ")
             
             if update_confirmation.lower() == 'yes':
                 # Update existing national_cuisine_rating
@@ -280,7 +282,8 @@ def insert_national_cuisine_rating(user_id, country_name, national_cuisine_ratin
             print("\n\t\tThe National cuisine rating was inserted successfully.\n\t")
     else:
         # If no record exists, insert a new record
-        insert_command = f"UPDATE Users SET country_name = '{country_name}', national_cuisine_rating = '{national_cuisine_rating}' WHERE user_id = '{user_id}'"
+        insert_command = f"INSERT INTO Users (user_id, country_name, national_cuisine_rating) VALUES ('{user_id}', '{country_name}', '{national_cuisine_rating}')"
+        # insert_command = f"UPDATE Users SET country_name = '{country_name}', national_cuisine_rating = '{national_cuisine_rating}' WHERE user_id = '{user_id}'"
         cursor.execute(insert_command)
         print("\n\t\tThe National cuisine rating was inserted successfully.\n\t")
 
@@ -296,7 +299,7 @@ def delete_national_cuisine_rating(user_id, country_name):
 
     available_countries = overall_country_queries.query_country_names()
     if country_name not in available_countries:
-        print(f"Error: {country_name} is not a valid country. Please enter a valid country")
+        print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
         connection.close()
         return False
 
