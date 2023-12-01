@@ -76,12 +76,12 @@ def query_country_overview(user_inputted_country_name):
 
     return user_output
 
-def main():
-    print(f"country names:\n{', '.join(query_country_names())}")
+# def main():
+#     print(f"country names:\n{', '.join(query_country_names())}")
 
-    print("\n\nCountry Overview:\n")
-    for key, value in query_country_overview("Norway").items():
-        print(f"{key:40}{value}")
+#     print("\n\nCountry Overview:\n")
+#     for key, value in query_country_overview("Norway").items():
+#         print(f"{key:40}{value}")
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

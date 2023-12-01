@@ -303,38 +303,38 @@ def query_climate_attributes(user_inputted_country_name):
 
     return user_output
 
-def main():
-    # print("\n\nCountry Attributes:")
-    # for key, value in query_country_attributes("hungary").items():
-    #     print(f"{key:25}{value:}")
+# def main():
+#     print("\n\nCountry Attributes:")
+#     for key, value in query_country_attributes("hungary").items():
+#         print(f"{key:25}{value:}")
 
-    # print("\n\ncapital city attributes:\n")
-    # for key, value in query_capital_city_attributes("romania").items():
-    #     print(f"{key:25}{value}")
+#     print("\n\ncapital city attributes:\n")
+#     for key, value in query_capital_city_attributes("romania").items():
+#         print(f"{key:25}{value}")
     
-    # print("\n\npublic transportation attributes:\n")
-    # for key, value in query_public_transportation_attributes("united kingdom").items():
-    #     print(f"{key:35}{value}")
+#     print("\n\npublic transportation attributes:\n")
+#     for key, value in query_public_transportation_attributes("united kingdom").items():
+#         print(f"{key:35}{value}")
 
-    print("\n\nnational cuisine attributes:\n")
-    for key, value in query_national_cuisine_attributes("rschor", "germany").items():
-        print(f"{key:45}{value}")
+#     print("\n\nnational cuisine attributes:\n")
+#     for key, value in query_national_cuisine_attributes("rschor", "germany").items():
+#         print(f"{key:45}{value}")
 
-    print("\n\nEconomy attributes:\n")
-    for key, value in query_economy_attributes("rschor", "germany").items():
-        print(f"{key:55}{value}")
+#     print("\n\nEconomy attributes:\n")
+#     for key, value in query_economy_attributes("rschor", "germany").items():
+#         print(f"{key:55}{value}")
 
-    # print("\n\nNational Security:\n")
-    # for key, value in query_national_security_attributes("spain").items():
-    #     print(f"{key:40}{value}")
+#     print("\n\nNational Security:\n")
+#     for key, value in query_national_security_attributes("spain").items():
+#         print(f"{key:40}{value}")
 
-    print("\n\nTourist Attractions:\n")
-    for key, value in query_tourist_attractions_attributes("rschor", "germany").items():
-        print(f"{key:40}{value}")
+#     print("\n\nTourist Attractions:\n")
+#     for key, value in query_tourist_attractions_attributes("rschor", "germany").items():
+#         print(f"{key:40}{value}")
 
-    # print("\n\nClimate:\n")
-    # for key, value in query_climate_attributes("switzerland").items():
-    #     print(f"{key:35}{value}")
+#     print("\n\nClimate:\n")
+#     for key, value in query_climate_attributes("switzerland").items():
+#         print(f"{key:35}{value}")
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

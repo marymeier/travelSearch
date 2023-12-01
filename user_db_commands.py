@@ -37,7 +37,7 @@ def create_new_user(user_id):
     connection.commit()
     connection.close()
 
-    print(f"Your new account's user_id is: \033[1m'{user_id}'\033[0m be sure to save it somewhere safe!")
+    print(f"\t\tYour new account's user_id is: \033[1m'{user_id}'\033[0m be sure to save it somewhere safe!")
     return True
 
 def delete_user(user_id, country_name=None):
@@ -48,10 +48,10 @@ def delete_user(user_id, country_name=None):
 
     if country_name is None:
         # If no country_name is provided, delete all rows with the specified user_id
-        delete_user_command = f"DELETE FROM Users WHERE user_id = {user_id}"
+        delete_user_command = f"DELETE FROM Users WHERE user_id = '{user_id}'"
     else:
         # If country_name is provided, delete the specific row with matching user_id and country_name
-        delete_user_command = f"DELETE FROM Users WHERE user_id = {user_id} AND country_name = '{country_name}'"
+        delete_user_command = f"DELETE FROM Users WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
     
     cursor.execute(delete_user_command)
 
@@ -68,6 +68,20 @@ def delete_all_users():
 
     connection.commit()
     connection.close()
+
+def user_exists(user_id):
+    connection = sqlite3.connect('travelSearch.db')
+    cursor = connection.cursor()
+
+    # Check if a record with the given user_id exists
+    check_existing_record_query = f"SELECT * FROM Users WHERE user_id = '{user_id}'"
+    cursor.execute(check_existing_record_query)
+
+    existing_record = cursor.fetchone()
+
+    connection.close()
+
+    return existing_record is not None
 
 def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction_fun_fact):
     connection = sqlite3.connect('travelSearch.db')
@@ -309,21 +323,9 @@ def delete_national_cuisine_rating(user_id, country_name):
 
     return True
 
-def main():
-    # delete_all_users()
-    query_all_users()
-    create_new_user("rschor")
+# def main():
+#     delete_user("bschneider")
+#     query_all_users()
 
-    # insert_tourist_attraction_fun_fact("rschor", "germany", "cool stuff")
-    # insert_economic_cost_of_stay("rschor", "germany", 250)
-    # insert_national_cuisine_rating("rschor", "germany", 2.3)
-
-    # delete_tourist_attraction_fun_fact("rschor", "germany")
-    # delete_economic_cost_of_stay("rschor", "england")
-    # delete_national_cuisine_rating("rschor", "india")
-
-    query_all_users()
-    # print("hello world")
-
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

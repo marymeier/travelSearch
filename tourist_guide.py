@@ -1,47 +1,9 @@
-import user_db_commands
 import database_queries
 import overall_country_queries
-
-# Global Variables
-user_id = ""
-
-# Introduction message for a new or existing user once they enter our guide
-def intro_message():
-    print("\n\n\n\033[1;4m\t\tWelcome to the European Travel and Information Guide\033[0m\n")
-    print("\tHere will be a travel guide that details information regarding a country\n\t" + 
-          "and its capital city. In addition, the guide shoulde provide you with\n\t" +
-          "information regarding the countries':")
-    print("\t\t- Cuisine" +
-         "\n\t\t- Transportation" +
-         "\n\t\t- Climate" +
-         "\n\t\t- Economy" +
-         "\n\t\t- Tourist Attractions" +
-         "\n\t\t- National Security Situation, as related to travel")
-    
-
-# Sql create new user. Create a role that's just visitor with privilege to see everything but user table.
-# Create one for yourself that's admin role with all privileges
-def user_log_in_message():
-    print("\n\n\033[1;4m\t\tBefore you enter our guide we need to validate your account\033[0m\n")
-    
-    while True:
-        user_input = input("Are you an existing user? [Y/N or Yes/No]\n").lower()
-
-        if user_input in ['y', 'yes']:
-            print("Great, you are an existing user.")
-            global user_id
-            user_id = input("Please enter your user id:\n")
-            # SQL code to check if user_id exists if not output response to user saying user id does not exist
-            break
-        elif user_input in ['n', 'no']:
-            print("\nWelcome new user!")
-            set_user_id()
-            break
-        else:
-            print("Sorry you entered an invalid input. Please enter 'Y' or 'N' or 'Yes' or 'No'. \033[1m(not case sensitive)\033[0m")
+import initial_user_housekeeping
 
 def print_command_list():
-    print("\n{}, here is a list of commands you can type and what each command does".format(user_id))
+    print("\n{}, here is a list of commands you can type and what each command does".format(initial_user_housekeeping.get_user_id()))
     print("\n\033[1mCommands:\033[0m")
     print("\t\033[1mEnter 'E' or 'e'\033[0m" +
           "\n\t\t- to escape the command sequence and leave the travel guide")
@@ -58,59 +20,17 @@ def print_command_list():
     print("\t\033[1mEnter '5 [country name] all'\033[0m" +
           "\n\t\t- To view everything regarding a country")
 
-# Check if the user inputed user_id information is only alphabetical letters
-def is_alphabetical(input_str):
-    return input_str.isalpha()
-
-# Sequence of messages and operations to create a user_id for a new user
-def set_user_id():
-    print("\nLet's begin by making you an account!")
-    print("\033[1mYour user name must only include alphabetical letters and nothing else!\033[0m")
-    
-    user_first_name = input("Please enter your first name:\n")
-    while not is_alphabetical(user_first_name):
-        print("\033[1mInvalid input.\033[0m Your first name must only include alphabetical letters.")
-        user_first_name = input("Please enter your first name:\n")
-
-    user_last_name = input("Please enter your last name:\n")
-    while not is_alphabetical(user_last_name):
-        print("\033[1mInvalid input.\033[0m Your last name must only include alphabetical letters.")
-        user_last_name = input("Please enter your last name:\n")
-    
-    global user_id
-    user_id = user_first_name[0] + user_last_name
-    user_id = user_id.lower()
-
-    # SQL Code to CREATE USER 'user_id'
-
 
 def main():
-    """
-    # This is the code we used to sort through csv's we created and found on kaggle. We then serialized
-    # and cleaned the data. Afterwards, we created an individual csv file for each table to be created in
-    # our SQL database.
-    # Keeping it to be able to show the process of how we got our data.
+    initial_user_housekeeping.intro_message()
 
-    european_data = clean_country_list("All_countries.csv")
-    additional_europe_data_frame = new_data("data.csv")
+    initial_user_housekeeping.user_log_in_message()
+    user_id = initial_user_housekeeping.get_user_id()
 
-    country_table_df = create_country_table_csv(european_data, additional_europe_data_frame)
-    economy_table_df = create_economy_table_csv(european_data, additional_europe_data_frame)
-    capital_city_table_df = create_capital_city_table_csv(european_data, additional_europe_data_frame)
-    tourist_attraction_table_df = create_tourist_attraction_table_csv(european_data, additional_europe_data_frame)
-    national_cuisine_table_df = create_national_cuisine_table_csv(european_data, additional_europe_data_frame)
-    climate_table_df= create_climate_table_csv(european_data, additional_europe_data_frame)
-    public_transportation_df = create_public_transportation_table_csv(european_data, additional_europe_data_frame)
-    national_secuirty_df = create_national_security_table_csv(european_data, additional_europe_data_frame)
-    """
-    intro_message()
-
-    user_log_in_message()
-
-    print("\nHere is your unique User_ID: {}".format(user_id))
+    print(f"\n\t\tDo not forget your unique User_ID \033[1m'{user_id}'\033[0m")
 
     while True:
-        # break
+        break
         print_command_list()
         user_input = input("Please enter your next command: ")
 
@@ -132,7 +52,7 @@ def main():
         else:
             print("Your command did not match any of the acceptable ones...")
     
-    print("\n\n\033[1;4m\t\tThank you for using our Travel Guide - Safe Travels\033[0m\n\n")    
+    print("\n\n\n\033[1;4m\t\tThank you for using our Travel Guide - Safe Travels\033[0m\n\n\n")    
 
 
 """
@@ -145,6 +65,23 @@ export each dataframe into its own unique csv related to the table in our SQL da
 This way we could clean, organize, and use the data in a more efficient manner as well
 as add it to our SQL database efficiently.
 
+
+    # This is the code we used to sort through csv's we created and found on kaggle. We then serialized
+    # and cleaned the data. Afterwards, we created an individual csv file for each table to be created in
+    # our SQL database.
+    # Keeping it to be able to show the process of how we got our data.
+
+    european_data = clean_country_list("All_countries.csv")
+    additional_europe_data_frame = new_data("data.csv")
+
+    country_table_df = create_country_table_csv(european_data, additional_europe_data_frame)
+    economy_table_df = create_economy_table_csv(european_data, additional_europe_data_frame)
+    capital_city_table_df = create_capital_city_table_csv(european_data, additional_europe_data_frame)
+    tourist_attraction_table_df = create_tourist_attraction_table_csv(european_data, additional_europe_data_frame)
+    national_cuisine_table_df = create_national_cuisine_table_csv(european_data, additional_europe_data_frame)
+    climate_table_df= create_climate_table_csv(european_data, additional_europe_data_frame)
+    public_transportation_df = create_public_transportation_table_csv(european_data, additional_europe_data_frame)
+    national_secuirty_df = create_national_security_table_csv(european_data, additional_europe_data_frame)
 
 def clean_country_list(file_name):
     europe_data = pd.read_csv(file_name)
