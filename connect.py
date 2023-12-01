@@ -329,36 +329,46 @@ def query_country_names():
 
     return available_countries
 
-def query_country_attributes(country_name):
+def format_country_name(user_inputted_country_name):
+    return user_inputted_country_name.lower().title()
+
+def query_country_attributes(user_inputted_country_name):
     connection = sqlite3.connect('travelSearch.db')
     cursor = connection.cursor()
 
+    country_name = format_country_name(user_inputted_country_name)
+
     select_query = """SELECT
                         name AS country_name,
-                        government_structure,
+                        government_struct AS government_structure,
                         most_common_religion,
                         time_zone,
-                        language AS national_language
+                        official_language
                     FROM Country
-                    WHERE name = country_name;
+                    WHERE name = ?;
                     """
-    cursor.execute(select_query)
+    cursor.execute(select_query, (country_name,))
 
-    rows = cursor.fetchall()
-
-    available_countries = []
-    for row in rows:
-        available_countries.append(row[0])
+    result = cursor.fetchone()
+    
+    if result:
+        user_output = {"Country Name": result[0],
+                    "Government Structure": result[1],
+                    "Most Common Religion": result[2],
+                    "Time Zone": result[3],
+                    "Official Language": result[4]
+                    }
+    else:
+        user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
     connection.close()
 
-    return available_countries
-
+    return user_output
 
 def main():
     _initialize_sql_tables()
-    query_country_names()
-    query_country_attributes("country_name")
+    # query_country_names()
+    # query_country_attributes("Some name")
 
 if __name__ == "__main__":
     main()
