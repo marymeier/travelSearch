@@ -1,13 +1,13 @@
 economic_world_ranking,homicide_rate_per_100000,global_peace_index,avg_larceny_per_100000,police_force
 3,0.83,15.0,1576.0,Bundespolizei
-6,0.48,10.0,0.02,Federate of swiss officers
+5,0.48,10.0,0.02,Federate of swiss officers
 6,6.8,158.0,95.2,Police of russia
 7,1.14,67.0,1.14,The police nationale
 8,0.48,34.0,47.8,Garda síochána na héireann
 9,1.1,26.0,28.9,"Bobbies, uk police force"
 11,2.52,132.0,34.0,General directorate of security
 15,0.61,32.0,129.1,"Cuerpo nacional de policía, national police corp"
-21,0.71,20.0,193.9,National police force of the republic of poland
+21,0.71,21.0,193.9,National police force of the republic of poland
 23,1.1,20.0,1.08,Federal police
 27,0.44,3.0,0.44,Garda síochána na héireann
 28,0.65,11.0,284.7,Dutch national police
@@ -17,19 +17,19 @@ economic_world_ranking,homicide_rate_per_100000,global_peace_index,avg_larceny_p
 41,0.8,2.0,3429.0,Politiet
 46,1.65,13.0,2231.0,Poliisi
 47,0.45,12.0,0.45,Policie české republiky
-50,0.79,5.0,185.8,Polícia de segurança pública
-52,0.54,15.0,289.8,Norwegian police service
+50,0.79,6.0,185.8,Polícia de segurança pública
+52,0.54,16.0,289.8,Norwegian police service
 53,0.85,60.0,832.0,Hellenic police
 58,0.77,18.0,1216.0,The rendőrség
-58,3.84,157.0,47.5,Politsiia
+59,3.84,157.0,47.5,Politsiia
 69,1.28,30.0,13.0,The national police service
-70,1.9,26.0,8.7,Slovak police
-71,0.6,,1843.0,Grand ducal police
+70,1.9,27.0,8.7,Slovak police
+71,0.6,0,1843.0,Grand ducal police
 74,2.33,116.0,3.16,Militsiya
 78,2.58,36.0,685.0,Lithuanian police force
 80,1.06,65.0,20.7,"Serbian police, gendarmery"
 82,1,14.0,0.0,Croatian police
-82,1.9,95.0,11.3,National police
+83,1.9,95.0,11.3,National police
 93,0.42,8.0,12.7,Slovenian national police force
 98,3.01,57.0,411.0,General police inspectorate
 100,3.04,27.0,27.7,Valsts policija
@@ -37,8 +37,8 @@ economic_world_ranking,homicide_rate_per_100000,global_peace_index,avg_larceny_p
 104,1.29,64.0,122.0,Cyprus police
 109,0.54,1.0,1316.0,Lögreglan
 115,2.04,94.0,2.04,The patrol police department
-115,1,61.0,0.98,Fbih police administration
-115,2.19,83.0,22.79,Police of the republic of armenia
+116,1,61.0,0.98,Fbih police administration
+117,2.19,83.0,22.79,Police of the republic of armenia
 125,2.31,40.0,6.9,Policia e shtetit
 130,1.14,27.0,25.0,Police of the republic of north macedonia
 131,0.38,,28.0,Malta police force
