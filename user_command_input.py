@@ -196,7 +196,7 @@ def user_command_loop():
             print_country_list(country_list)
         elif user_input == "2":
             print_entity_list()
-        elif user_input.title() in country_list or user_input.lower == "bosnia and herzegovina":
+        elif user_input.title() in country_list:
             print("\n\n\t\tCountry Attributes:")
             for key, value in database_queries.query_country_attributes(user_input.title()).items():
                 print(f"\t\t{key:25}{value:}")
