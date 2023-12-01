@@ -214,8 +214,3 @@ def user_command_loop():
         else:
             print("\n\t\tYour command did not match any of the acceptable ones...")
             print("\n\t\tYou may have mispelled a country or request.")
-
-
-    # Need to add functionality for last 6 commands the 3 add ratings and 3 delete ratings
-    # Gotta make sure to check that scale is 0-10 for cuisine rating
-    # need to ask user for country_name and what they want to add
