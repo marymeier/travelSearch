@@ -183,7 +183,7 @@ def user_command_loop():
         user_input = input("\n\t\tPlease enter your next command, type \033[1m'h'\033[0m for the list of commands:\n\t")
         user_input = user_input.lower()
         
-        if not user_input or user_input.isspace() or not user_input.isalpha():
+        if not user_input or user_input.isspace() or not user_input.replace(' ', '').isalnum():
             if user_input not in ["1", "2"]:
                 print("\n\t\tYour command did not match any of the acceptable ones...")
                 continue
