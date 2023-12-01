@@ -54,7 +54,7 @@ def create_and_populate_capital_city_table():
                             FOREIGN KEY (country)
                                 REFERENCES Country(name)
                             );
-    """
+                            """
     cursor.execute(create_capital_city_table)
 
     with open('Capital_City_table.csv') as file:
@@ -92,7 +92,7 @@ def create_and_populate_public_transportation_table():
                                 FOREIGN KEY (country_name)
                                     REFERENCES Country(name)
                             );
-    """
+                            """
     cursor.execute(create_public_transportation_table)
 
     with open('Public_Transportation_table.csv') as file:
@@ -129,7 +129,7 @@ def create_and_populate_national_cuisine_table():
                                 FOREIGN KEY (country_name)
                                     REFERENCES Country(name)
                             );
-    """
+                            """
     cursor.execute(create_national_cuisine_table)
 
     with open('National_Cuisine_table.csv') as file:
@@ -168,7 +168,7 @@ def create_and_populate_economy_table():
                         FOREIGN KEY (country_name)
                             REFERENCES Country(name)
                     );
-    """
+                    """
     cursor.execute(create_economy_table)
 
     with open('Economy_table.csv') as file:
@@ -206,7 +206,7 @@ def create_and_populate_national_security_table():
                         FOREIGN KEY (economic_world_ranking)
                             REFERENCES Economy(economic_world_ranking)
                     );
-    """
+                    """
     cursor.execute(create_economy_table)
 
     with open('National_Security_table.csv') as file:
@@ -243,7 +243,7 @@ def create_and_populate_tourist_attractions_table():
                         FOREIGN KEY (city_name)
                             REFERENCES Capital_City(capital_city)
                     );
-    """
+                    """
     cursor.execute(create_economy_table)
 
     with open('Tourist_Attraction_table.csv') as file:
@@ -281,7 +281,7 @@ def create_and_populate_climate_table():
                         FOREIGN KEY (city_name)
                             REFERENCES Capital_City(capital_city)
                     );
-    """
+                    """
     cursor.execute(create_economy_table)
 
     with open('Climate_table.csv') as file:
@@ -312,63 +312,9 @@ def _initialize_sql_tables():
     create_and_populate_tourist_attractions_table()
     create_and_populate_climate_table()
 
-def query_country_names():
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
-
-    select_query = "SELECT name as country_names FROM Country"
-    cursor.execute(select_query)
-
-    rows = cursor.fetchall()
-
-    available_countries = []
-    for row in rows:
-        available_countries.append(row[0])
-    
-    connection.close()
-
-    return available_countries
-
-def format_country_name(user_inputted_country_name):
-    return user_inputted_country_name.lower().title()
-
-def query_country_attributes(user_inputted_country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
-
-    country_name = format_country_name(user_inputted_country_name)
-
-    select_query = """SELECT
-                        name AS country_name,
-                        government_struct AS government_structure,
-                        most_common_religion,
-                        time_zone,
-                        official_language
-                    FROM Country
-                    WHERE name = ?;
-                    """
-    cursor.execute(select_query, (country_name,))
-
-    result = cursor.fetchone()
-    
-    if result:
-        user_output = {"Country Name": result[0],
-                    "Government Structure": result[1],
-                    "Most Common Religion": result[2],
-                    "Time Zone": result[3],
-                    "Official Language": result[4]
-                    }
-    else:
-        user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
-    
-    connection.close()
-
-    return user_output
 
 def main():
     _initialize_sql_tables()
-    # query_country_names()
-    # query_country_attributes("Some name")
 
 if __name__ == "__main__":
     main()
