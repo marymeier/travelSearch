@@ -90,7 +90,7 @@ def print_country_specific_info(user_input):
         print("\n\t\tnational cuisine attributes:\n")
         for key, value in database_queries.query_national_cuisine_attributes(initial_user_housekeeping.get_user_id(), country).items():
             print(f"\t\t{key:45}{value}")
-    elif specific_table in ['Economy', 'econ']:
+    elif specific_table in ['economy', 'econ']:
         print("\n\t\tEconomy attributes:\n")
         for key, value in database_queries.query_economy_attributes(initial_user_housekeeping.get_user_id(), country).items():
             print(f"\t\t{key:55}{value}")
