@@ -128,16 +128,16 @@ def delete_fun_fact():
         user_db_commands.delete_tourist_attraction_fun_fact(initial_user_housekeeping.get_user_id(), country_name)
     else:
         print("Okay, it will not be deleted. You can come back to delete it at any time.")
-
-def add_fun_fact():
-    country_name = input("\n\t\tLet's add your fun fact! First, which country do you want to add a fun fact about? \n\t")
-    fun_fact = input("\n\t\tWhat is your fun fact? \n\t")
+        
+def add_econ_cost():
+    country_name = input("\n\t\tWhat country do you want to add your estimated cost of stay to?\n\t")
+    cost_of_stay = input("\n\t\tHow much is it? Please only enter a number.\n\t")
     
-    user_input = input("\n\t\tAre you sure you want to add this fact? [y/n]\n\t")
+    user_input = input("\n\t\tAre you sure you want to add this cost of stay? [y/n]\n\t")
     user_input.lower()
     if user_input in ['y', 'yes']:
-        print("\n\t\tGreat! Thanks for adding that fact! You can delete it at any time.\n\t")
-        user_db_commands.insert_tourist_attraction_fun_fact(initial_user_housekeeping.get_user_id(), country_name, fun_fact)
+        print("\n\t\tGreat! Thanks for adding! You can delete it at any time.\n\t")
+        user_db_commands.insert_economic_cost_of_stay(initial_user_housekeeping.get_user_id(), country_name, cost_of_stay)
     else:
         print("Okay, it will not be added. You can add another at any time.")
 
@@ -167,9 +167,11 @@ def user_command_loop():
             for key, value in overall_country_queries.query_country_overview(user_input.split()[0].title()).items():
                 print(f"\t\t{key:40}{value}")
         elif user_input in ['add fun fact', 'fun fact', 'fact']:
-            add_fun_fact();
+            add_fun_fact()
         elif user_input in ['delete fun fact']:
-            delete_fun_fact();
+            delete_fun_fact()
+        elif user_input in ['add econ cost', 'econ cost', 'add cost of stay']:
+            add_econ_cost()
         else:
             print("Your command did not match any of the acceptable ones...")
             print("You may have mispelled a country or request.")
