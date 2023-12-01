@@ -28,29 +28,46 @@ def query_country_overview(user_inputted_country_name):
     country_name = format_country_name(user_inputted_country_name)
 
     select_query = """SELECT
-                        city_name,
-                        region_of_climate,
-                        climate_type,
-                        avg_days_of_sun,
-                        season_to_travel
-                    FROM Climate
-                    WHERE city_name = (
-                        SELECT capital_city
-                        FROM Capital_City
-                        WHERE country = ?
-                    );
+                        Country.name AS country_name,
+                        Country.official_language,
+                        Country.government_struct AS government_structure,
+                        Country.most_common_religion,
+                        Capital_City.capital_city,
+                        Capital_City.population AS capital_city_population,
+                        Public_Transportation.types_available AS public_transportation_options,
+                        Public_Transportation.avg_price_of_ticket,
+                        National_Cuisine.dish_name AS national_dish,
+                        National_Cuisine.most_exported_food,
+                        Economy.type,
+                        Economy.economic_world_ranking,
+                        Economy.gdp AS gross_domestic_product,
+                        Economy.currency
+                    FROM Country
+                    JOIN Capital_City ON Country.name = Capital_City.country
+                    JOIN Public_Transportation ON Country.name = Public_Transportation.country_name
+                    JOIN National_Cuisine ON Country.name = National_Cuisine.country_name
+                    JOIN Economy ON Country.name = Economy.country_name
+                    WHERE Country.name = ?;
                     """
     cursor.execute(select_query, (country_name,))
 
     result = cursor.fetchone()
     
     if result:
-        user_output = {"Country Name": country_name,
-                    "City": result[0].title(),
-                    "Region of Climate": result[1].title(),
-                    "Climate Type": result[2].title(),
-                    "Average Days of Sun in the Year": f"{result[3]} days",
-                    "Season to Travel": result[4].title()
+        user_output = {"Country Name": result[0],
+                    "Official Language/s": result[1].title(),
+                    "Government Structure": result[2].title(),
+                    "Most Common Religion": result[3],
+                    "Capital City": result[4],
+                    "City Population": '{:,}'.format(result[5]),
+                    "Public Transportation Options": result[6].title(),
+                    "Average Price of Ticket": result[7],
+                    "National Dish": result[8].title(),
+                    "Most Exported Food": result[9],
+                    "Type of Economy": result[10].title(),
+                    "Economic World Ranking": result[11],
+                    "Total Gross Domestic Product, GDP": '${:,}'.format(result[12]),
+                    "Currency": result[13]
                     }
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
@@ -59,9 +76,12 @@ def query_country_overview(user_inputted_country_name):
 
     return user_output
 
-
 def main():
     print(f"country names:\n{', '.join(query_country_names())}")
+
+    print("\n\nCountry Overview:\n")
+    for key, value in query_country_overview("Norway").items():
+        print(f"{key:40}{value}")
 
 if __name__ == "__main__":
     main()

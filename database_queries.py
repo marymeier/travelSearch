@@ -27,7 +27,7 @@ def query_country_attributes(user_inputted_country_name):
                     "Government Structure": result[1].title(),
                     "Most Common Religion": result[2],
                     "Time Zone": result[3],
-                    "Official Language": result[4]
+                    "Official Language/s": result[4]
                     }
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
