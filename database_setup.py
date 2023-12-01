@@ -10,9 +10,9 @@ def create_and_populate_country_table():
     cursor.execute('DROP TABLE IF EXISTS Country')
     create_country_table = """CREATE TABLE Country (
                             name VARCHAR(50) NOT NULL,
-                            government_struct VARCHAR(50),
-                            official_language VARCHAR(50),
                             most_common_religion VARCHAR(50),
+                            official_language VARCHAR(50),
+                            government_struct VARCHAR(50),
                             time_zone VARCHAR(50),
                             PRIMARY KEY(name)
                             );
@@ -84,10 +84,10 @@ def create_and_populate_public_transportation_table():
     cursor.execute('DROP TABLE IF EXISTS Public_Transportation')
     create_public_transportation_table = """CREATE TABLE Public_Transportation (
                                 country_name VARCHAR(50),
-                                types_available VARCHAR(50) NOT NULL,
-                                owned_by VARCHAR(50) NOT NULL,
                                 most_used VARCHAR(50),
+                                owned_by VARCHAR(50) NOT NULL,
                                 avg_price_of_ticket FLOAT,
+                                types_available VARCHAR(50) NOT NULL,
                                 PRIMARY KEY (types_available, owned_by),
                                 FOREIGN KEY (country_name)
                                     REFERENCES Country(name)
@@ -101,7 +101,7 @@ def create_and_populate_public_transportation_table():
         # Skip the header row
         next(contents)
         
-        insert_records = "INSERT INTO Public_Transportation (country_name,types_available,owned_by,most_used,avg_price_of_ticket) VALUES (?,?,?,?,?)"
+        insert_records = "INSERT INTO Public_Transportation (country_name,most_used,owned_by,avg_price_of_ticket,types_available) VALUES (?,?,?,?,?)"
         cursor.executemany(insert_records, contents)
 
     # select_all = "SELECT * FROM Public_Transportation"
@@ -198,8 +198,8 @@ def create_and_populate_national_security_table():
     cursor.execute('DROP TABLE IF EXISTS National_Security')
     create_economy_table = """CREATE TABLE National_Security (
                         economic_world_ranking INT NOT NULL,
-                        global_peace_index INT,
                         homicide_rate FLOAT,
+                        global_peace_index INT,
                         avg_larceny FLOAT,
                         police_force VARCHAR(30),
                         PRIMARY KEY (economic_world_ranking),
@@ -215,7 +215,7 @@ def create_and_populate_national_security_table():
         # Skip the header row
         next(contents)
         
-        insert_records = "INSERT INTO National_Security (economic_world_ranking,global_peace_index,homicide_rate,avg_larceny,police_force) VALUES (?,?,?,?,?)"
+        insert_records = "INSERT INTO National_Security (economic_world_ranking,homicide_rate,global_peace_index,avg_larceny,police_force) VALUES (?,?,?,?,?)"
         cursor.executemany(insert_records, contents)
 
     # select_all = "SELECT * FROM National_Security"

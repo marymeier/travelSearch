@@ -1,4 +1,4 @@
-import pandas as pd
+# import pandas as pd
 import sqlite3
 
 # Global Variables
@@ -116,7 +116,7 @@ def main():
     print("\nHere is your unique User_ID: {}".format(user_id))
 
     while True:
-        break
+        # break
         print_command_list()
         user_input = input("Please enter your next command: ")
 
