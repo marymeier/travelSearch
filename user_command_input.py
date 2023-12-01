@@ -103,7 +103,7 @@ def print_country_specific_info(user_input):
         for key, value in database_queries.query_tourist_attractions_attributes(initial_user_housekeeping.get_user_id(), country).items():
             print(f"\t\t{key:40}{value}")
     else:
-        print("\n\nNational Security:\n")
+        print("\n\t\tNational Security:\n")
         for key, value in database_queries.query_national_security_attributes(country).items():
             print(f"{key:40}{value}")
             
