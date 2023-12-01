@@ -9,7 +9,7 @@ def get_user_id():
 
 # Introduction message for a new or existing user once they enter our guide
 def intro_message():
-    print("\n\n\n\033[1;4m\t\tWelcome to the European Travel and Information Guide\033[0m\n")
+    print("\n\n\n\t\t\033[1;4mWelcome to the European Travel and Information Guide\033[0m\n")
     print("\tHere will be a travel guide that details information regarding European\n\t" + 
           "countries. In addition, the guide shoulde provide you with information\n\t" +
           "regarding the countries':")
@@ -26,7 +26,7 @@ def is_alphabetical(input_str):
 
 def user_log_in_message():
     global user_id
-    print("\n\n\033[1;4m\t\tBefore you enter our guide we need to validate your account\033[0m\n")
+    print("\n\n\t\t\033[1;4mBefore you enter our guide we need to validate your account\033[0m\n")
     
     while True:
         user_input = input("\n\t\tAre you an existing user? [Y/N or Yes/No] \033[1m(not case sensitive)\033[0m\n\t").lower()
