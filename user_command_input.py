@@ -4,7 +4,7 @@ import database_queries
 import user_db_commands
 
 entity_list = ['capital city', 'capital_city', 'capital', 'public transportation', 'transportation', 'public_transportation',
-               'national cuisine', 'cuisine', 'national_cuisine', 'food', 'economy', 'econ', 'climate', 'weather',
+               'transport', 'national cuisine', 'cuisine', 'national_cuisine', 'food', 'economy', 'econ', 'climate', 'weather',
                'tourist attractions', 'tourism', 'attractions', 'tourist_attractions', 'national security',
                'security', 'national_security']
 
@@ -66,14 +66,14 @@ def print_entity_list():
     print("\n\t\tEach country has the following country specific information offered about it:"+
         "\n\t\tYou can simply type the \033[1m'Country_name any_of_the_following'\033[0m to get specific info."
         "\n\t\t\t- Country" +
-        "\n\t\t\t- Capital City or capital_city" +
-        "\n\t\t\t- Public Transportation or transportation or public_transportation" +
-        "\n\t\t\t- National Cuisine or cuisine or national_cuisine or food" +
+        "\n\t\t\t- Capital City, capital_city, or capital" +
+        "\n\t\t\t- Public Transportation, transportation, public_transportation, or transport" +
+        "\n\t\t\t- National Cuisine, cuisine, national_cuisine, or food" +
         "\n\t\t\t- Economy or econ" +
         "\n\t\t\t- Climate or weather" +
-        "\n\t\t\t- Tourist Attractions or tourism or attractions or tourist_attractions" +
-        "\n\t\t\t- National Security or security or national_security" +
-        "\n\t\t\t- Example: \033[1m'Italy Economy'\033[0m or \033[1m'Norway Climate'\033[0m or \033[1m'Russia econ'\033[0m")
+        "\n\t\t\t- Tourist Attractions, tourism, attractions, or tourist_attractions" +
+        "\n\t\t\t- National Security, security, national_security" +
+        "\n\t\t\t- Example: \033[1m'Italy Economy'\033[0m, \033[1m'Norway Climate'\033[0m, or \033[1m'Russia econ'\033[0m")
 
 def print_country_specific_info(user_input):
     country = user_input.split()[0].title()
