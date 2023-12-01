@@ -31,6 +31,7 @@ def user_log_in_message():
     while True:
         user_input = input("\n\t\tAre you an existing user? [Y/N or Yes/No] \033[1m(not case sensitive)\033[0m\n\t").lower()
 
+        # Verifies that user is an existing id through a query
         if user_input in ['y', 'yes']:
             print("\n\t\tGreat, you are an existing user. Let's verify your user_id.")
             user_inputted_id = input("\t\tPlease enter your user_id:\n\t")
@@ -62,6 +63,7 @@ def set_user_id():
     print("\n\t\tLet's begin by making you an account!")
     print("\t\t\033[1mYour user name must only include alphabetical letters and nothing else!\033[0m\n")
     
+    # Verifies that user input is valid for both first and last name
     user_first_name = input("\n\t\tPlease enter your first name:\n\t")
     while not is_alphabetical(user_first_name):
         print("\t\t\033[1mInvalid input.\033[0m Your first name must only include alphabetical letters.")
@@ -75,6 +77,7 @@ def set_user_id():
     temp_user_id = user_first_name[0] + user_last_name
     temp_user_id = temp_user_id.lower()
 
+    # Checks if the inputed id is available, if it already exists asks if user wants to log in with that id
     while user_db_commands.user_exists(temp_user_id):
         print(f"\n\t\tSorry, the user_id: \033[1m'{temp_user_id}'\033[0m already exists.")
 
@@ -91,11 +94,12 @@ def set_user_id():
             break
         else:
             print("\n\t\tInvalid input. Please enter 'Y' or 'N' or 'Yes' or 'No'. \033[1m(not case sensitive)\033[0m")
-
+    # If id does not exist in database creates new user based on given ID
     if not user_db_commands.user_exists(temp_user_id):
         print(f"\n\t\tUser_id {temp_user_id} is available.\n")
         if user_db_commands.create_new_user(temp_user_id):
             user_id = temp_user_id
+        # Should never reach here but just incase reloops to log-in
         else:
             print("Let's try that again")
             user_log_in_message
