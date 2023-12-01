@@ -4,7 +4,7 @@ import database_queries
 import user_db_commands
 
 entity_list = ['capital city', 'capital_city', 'public transportation', 'transportation', 'public_transportation',
-               'national cuisine', 'cuisine', 'national_cuisine', 'food', 'Economy', 'econ', 'climate', 'weather',
+               'national cuisine', 'cuisine', 'national_cuisine', 'food', 'economy', 'econ', 'climate', 'weather',
                'tourist attractions', 'tourism', 'attractions', 'tourist_attractions', 'national security',
                'security', 'national_security']
 
@@ -47,7 +47,7 @@ def print_command_list():
           "\n\t\t- Example 'add cuisine rating'\n")
     print("\t\033[1mEnter 'delete cuisine rating'\033[0m" +
           "\n\t\t- Removes a previously added national cuisine rating" +
-          "\n\t\t- Example 'delete cusine rating'\n")
+          "\n\t\t- Example 'delete cuisine rating'\n")
 
 def print_country_list(country_list):
     midpoint1 = len(country_list) // 3
@@ -74,7 +74,7 @@ def print_entity_list():
         "\n\t\t\t- Climate or weather" +
         "\n\t\t\t- Tourist Attractions or tourism or attractions or tourist_attractions" +
         "\n\t\t\t- National Security or security or national_security" +
-        "\n\t\t\t- Example: \033[1m'Italy Economy'\033[0m or \033[1m'norway Climate'\033[0m or \033[1m'russia econ'\033[0m")
+        "\n\t\t\t- Example: \033[1m'Italy Economy'\033[0m or \033[1m'Norway Climate'\033[0m or \033[1m'Russia econ'\033[0m")
 
 def print_country_specific_info(user_input):
     country, specific_table = user_input.split()[0].title(), user_input.split()[1]
