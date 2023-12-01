@@ -182,6 +182,11 @@ def user_command_loop():
     while True:        
         user_input = input("\n\t\tPlease enter your next command, type \033[1m'h'\033[0m for the list of commands:\n\t")
         user_input = user_input.lower()
+        
+        if not user_input or user_input.isspace() or not user_input.isalpha():
+            if user_input not in ["1", "2"]:
+                print("\n\t\tYour command did not match any of the acceptable ones...")
+                continue
 
         if user_input in ['e', 'exit']:
             break
@@ -191,7 +196,7 @@ def user_command_loop():
             print_country_list(country_list)
         elif user_input == "2":
             print_entity_list()
-        elif user_input.title() in country_list:
+        elif user_input.title() in country_list or user_input.lower == "bosnia and herzegovina":
             print("\n\n\t\tCountry Attributes:")
             for key, value in database_queries.query_country_attributes(user_input.title()).items():
                 print(f"\t\t{key:25}{value:}")
