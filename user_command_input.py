@@ -28,23 +28,23 @@ def print_command_list():
           "\n\t\t- Example: 'Denmark Economy'")
     print("\t\033[1mEnter '[country name] all'\033[0m" +
           "\n\t\t- To view everything regarding a country" +
-          "\n\t\t- Example 'Denmark all'\n")
+          "\n\t\t- Example 'Denmark all'")
     print("\t\033[1mCommands For User Ratings/ Inputs:\033[0m")
     print("\t\033[1mEnter 'add fun fact'\033[0m" +
           "\n\t\t- You can add a tourist attraction fun fact you have and want to save" +
-          "\n\t\t- Example 'add fun fact'\n")
+          "\n\t\t- Example 'add fun fact'")
     print("\t\033[1mEnter 'delete fun fact'\033[0m" +
           "\n\t\t- Removes a previously added tourist fun fact" +
-          "\n\t\t- Example 'delete fun fact'\n")
+          "\n\t\t- Example 'delete fun fact'")
     print("\t\033[1mEnter 'add econ cost'\033[0m" +
           "\n\t\t- You can your estimated economic cost of stay for a week based on past experience" +
-          "\n\t\t- Example 'add econ cost'\n")
+          "\n\t\t- Example 'add econ cost'")
     print("\t\033[1mEnter 'delete econ cost'\033[0m" +
           "\n\t\t- Removes a previously added economic estimate" +
-          "\n\t\t- Example 'delete econ cost'\n")
+          "\n\t\t- Example 'delete econ cost'")
     print("\t\033[1mEnter 'add cuisine rating'\033[0m" +
           "\n\t\t- You can your national cuisine rating based on past experience" +
-          "\n\t\t- Example 'add cuisine rating'\n")
+          "\n\t\t- Example 'add cuisine rating'")
     print("\t\033[1mEnter 'delete cuisine rating'\033[0m" +
           "\n\t\t- Removes a previously added national cuisine rating" +
           "\n\t\t- Example 'delete cuisine rating'\n")
