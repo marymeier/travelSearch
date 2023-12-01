@@ -115,6 +115,40 @@ def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction
 
     return True
 
+def delete_tourist_attraction_fun_fact(user_id, country_name):
+    connection = sqlite3.connect('travelSearch.db')
+    cursor = connection.cursor()
+    country_name = country_name.title()
+
+    available_countries = overall_country_queries.query_country_names()
+    if country_name not in available_countries:
+        print(f"Error: {country_name} is not a valid country. Please enter a valid country")
+        connection.close()
+        return False
+
+    # Check if a record with the given user_id and country_name exists
+    check_existing_record_query = f"SELECT * FROM Users WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
+    cursor.execute(check_existing_record_query)
+
+    existing_record = cursor.fetchone()
+
+    if existing_record:
+        # If a record exists, check if tourist_attraction_fun_fact is set
+        if existing_record[2] is not None:
+            # Delete existing tourist_attraction_fun_fact
+            delete_command = f"UPDATE Users SET tourist_attraction_fun_fact = NULL WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
+            cursor.execute(delete_command)
+            print("Your tourist attraction fun fact was deleted successfully.")
+        else:
+            print(f"No tourist attraction fun fact exists for your user_id: {user_id} in {country_name}.")
+    else:
+        print(f"No record found for user {user_id} in {country_name}.")
+
+    connection.commit()
+    connection.close()
+
+    return True
+
 def insert_economic_cost_of_stay(user_id, country_name, economic_cost_of_stay):
     connection = sqlite3.connect('travelSearch.db')
     cursor = connection.cursor()
@@ -142,19 +176,53 @@ def insert_economic_cost_of_stay(user_id, country_name, economic_cost_of_stay):
                 # Update existing economic_cost_of_stay
                 update_command = f"UPDATE Users SET economic_cost_of_stay = '{economic_cost_of_stay}' WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
                 cursor.execute(update_command)
-                print("Estimated economic cost of stay for a week was updated successfully.")
+                print("Your estimated economic cost of stay for a week was updated successfully.")
             else:
                 print("No changes made, original submission stands.")
         else:
             # Insert economic_cost_of_stay if it doesn't exist
             update_command = f"UPDATE Users SET economic_cost_of_stay = '{economic_cost_of_stay}' WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
             cursor.execute(update_command)
-            print("Estimated economic cost of stay for a week was inserted successfully.")
+            print("Your estimated economic cost of stay for a week was inserted successfully.")
     else:
         # If no record exists, insert a new record
         insert_command = f"UPDATE Users SET country_name = '{country_name}', economic_cost_of_stay = '{economic_cost_of_stay}' WHERE user_id = '{user_id}'"
         cursor.execute(insert_command)
-        print("New Estimated economic cost of stay for a week was inserted successfully.")
+        print("Your new Estimated economic cost of stay for a week was inserted successfully.")
+
+    connection.commit()
+    connection.close()
+
+    return True
+
+def delete_economic_cost_of_stay(user_id, country_name):
+    connection = sqlite3.connect('travelSearch.db')
+    cursor = connection.cursor()
+    country_name = country_name.title()
+
+    available_countries = overall_country_queries.query_country_names()
+    if country_name not in available_countries:
+        print(f"Error: {country_name} is not a valid country. Please enter a valid country")
+        connection.close()
+        return False
+
+    # Check if a record with the given user_id and country_name exists
+    check_existing_record_query = f"SELECT * FROM Users WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
+    cursor.execute(check_existing_record_query)
+
+    existing_record = cursor.fetchone()
+
+    if existing_record:
+        # If a record exists, check if economic_cost_of_stay is set
+        if existing_record[3] is not None:
+            # Delete existing economic_cost_of_stay
+            delete_command = f"UPDATE Users SET economic_cost_of_stay = NULL WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
+            cursor.execute(delete_command)
+            print("Your estimated economic cost of stay for a week was deleted successfully.")
+        else:
+            print(f"No estimated economic cost of stay for a week exists for your user_id: {user_id} in {country_name}.")
+    else:
+        print(f"No record found for user {user_id} in {country_name}.")
 
     connection.commit()
     connection.close()
@@ -207,17 +275,55 @@ def insert_national_cuisine_rating(user_id, country_name, national_cuisine_ratin
 
     return True
 
+def delete_national_cuisine_rating(user_id, country_name):
+    connection = sqlite3.connect('travelSearch.db')
+    cursor = connection.cursor()
+    country_name = country_name.title()
+
+    available_countries = overall_country_queries.query_country_names()
+    if country_name not in available_countries:
+        print(f"Error: {country_name} is not a valid country. Please enter a valid country")
+        connection.close()
+        return False
+
+    # Check if a record with the given user_id and country_name exists
+    check_existing_record_query = f"SELECT * FROM Users WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
+    cursor.execute(check_existing_record_query)
+
+    existing_record = cursor.fetchone()
+
+    if existing_record:
+        # If a record exists, check if national_cuisine_rating is set
+        if existing_record[4] is not None:
+            # Delete existing national_cuisine_rating
+            delete_command = f"UPDATE Users SET national_cuisine_rating = NULL WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
+            cursor.execute(delete_command)
+            print("Your national cuisine rating was deleted successfully.")
+        else:
+            print(f"No national cuisine rating exists for your user_id: {user_id} in {country_name}.")
+    else:
+        print(f"No record found for user {user_id} in {country_name}.")
+
+    connection.commit()
+    connection.close()
+
+    return True
+
 def main():
     # delete_all_users()
     query_all_users()
     create_new_user("rschor")
 
-    insert_tourist_attraction_fun_fact("rschor", "germany", "cool stuff")
-    insert_economic_cost_of_stay("rschor", "germany", 250)
-    insert_national_cuisine_rating("rschor", "germany", 2.3)
+    # insert_tourist_attraction_fun_fact("rschor", "germany", "cool stuff")
+    # insert_economic_cost_of_stay("rschor", "germany", 250)
+    # insert_national_cuisine_rating("rschor", "germany", 2.3)
+
+    # delete_tourist_attraction_fun_fact("rschor", "germany")
+    # delete_economic_cost_of_stay("rschor", "england")
+    # delete_national_cuisine_rating("rschor", "india")
 
     query_all_users()
-    print("hello world")
+    # print("hello world")
 
 if __name__ == "__main__":
     main()
