@@ -23,7 +23,8 @@ def print_command_list():
           "\n\t\t- to view specific information regarding a country" +
           "\n\t\t- Example: 'Denmark'")
     print("\t\033[1mEnter '[country name] [country specific info]'\033[0m" +
-          "\n\t\t- to view information in a specific sector of that country be it climate, economy, food, etc")          "\n\t\t- Example: 'Denmark Economy'")
+          "\n\t\t- to view information in a specific sector of that country be it climate, economy, food, etc" + 
+          "\n\t\t- Example: 'Denmark Economy'")
     print("\t\033[1mEnter '[country name] all'\033[0m" +
           "\n\t\t- To view everything regarding a country" +
           "\n\t\t- Example 'Denmark all'")
