@@ -4,6 +4,15 @@ import sqlite3
 # Global Variables
 user_id = ""
 
+# def connect_travelSearch():
+#     # Connect to sqlite and tableSearch database
+#     conn = sqlite3.connect('travelSearch.db')
+
+#     cursor = conn.cursor()
+#     cursor.execute('SELECT * FROM travelSearch.Capital_City')
+#     conn.commit
+
+# Introduction message for a new or existing user once they enter our guide
 def intro_message():
     print("\n\033[1;4m\t\tWelcome to the European Travel and Information Guide\033[0m\n")
     print("\tHere will be a travel guide that details information regarding a country\n\t" + 
@@ -17,11 +26,6 @@ def intro_message():
          "\n\t\t- National Security Situation, as related to travel")
     
 
-
-# Ask if you're a new or existing user. If they are not create one given their name. If they exist ask for userID.
-
-# - clean all user inputs for username so they can't enter sql commands
-
 # Sql create new user. Create a role that's just visitor with privilege to see everything but user table.
 # Create one for yourself that's admin role with all privileges
 def returning_user_message():
@@ -34,6 +38,7 @@ def returning_user_message():
             print("Great, you are an existing user.")
             global user_id
             user_id = input("Please enter your user id:\n")
+            # SQL code to check if user_id exists if not output response to user saying user id does not exist
             break
         elif user_input in ['n', 'no']:
             print("\nWelcome new user!")
@@ -41,7 +46,6 @@ def returning_user_message():
             break
         else:
             print("Sorry you entered an invalid input. Please enter 'Y' or 'N' or 'Yes' or 'No'. \033[1m(not case sensitive)\033[0m")
-
 
 def print_command_list():
     print("\n{}, here is a list of commands you can type and what each command does".format(user_id))
@@ -61,10 +65,11 @@ def print_command_list():
     print("\t\033[1mEnter '5 [country name] all'\033[0m" +
           "\n\t\t- To view everything regarding a country")
 
-
+# Check if the user inputed user_id information is only alphabetical letters
 def is_alphabetical(input_str):
     return input_str.isalpha()
 
+# Sequence of messages and operations to create a user_id for a new user
 def set_user_id():
     print("\nLet's begin by making you an account!")
     print("\033[1mYour user name must only include alphabetical letters and nothing else!\033[0m")
@@ -79,18 +84,11 @@ def set_user_id():
         print("\033[1mInvalid input.\033[0m Your last name must only include alphabetical letters.")
         user_last_name = input("Please enter your last name:\n")
     
-
     global user_id
     user_id = user_first_name[0] + user_last_name
+
     # SQL Code to CREATE USER 'user_id'
 
-def connect_travelSearch():
-    # Connect to sqlite and tableSearch database
-    conn = sqlite3.connect('travelSearch.db')
-
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM travelSearch.Capital_City')
-    conn.commit
 
 def main():
     """

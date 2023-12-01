@@ -1,6 +1,6 @@
 country,economic_world_ranking,gdp,economy_type,currency,largest_industry
 Germany,3,4072190000000.0,Mixed,Euro,Mechanical
-Switzerland,6,807706000000.0,"Open, free-market based",Swiss franc,Banking and finance
+Switzerland,5,807706000000.0,"Open, free-market based",Swiss franc,Banking and finance
 Russia,6,2240420000000.0,Mixed-market,Russian ruble,Machine building
 France,7,2782910000000.0,Mixed,Euro,Health and social care
 Italy,8,2010430000000.0,Social market,Euro,Tourism
@@ -21,7 +21,7 @@ Portugal,50,251945000000.0,Service-based mixed economy,Euro,Service / tourism
 Norway,52,579267000000.0,Mixed-market,Norwegian krone,Oil and gas
 Greece,53,219066000000.0,Capitalist,Euro,Tourism
 Hungary,58,178789000000.0,High-income mixed,Hungarian forint,Automotive
-Ukraine,58,160503000000.0,Mixed-market,Ukrainian hryvnia,Heavy industry
+Ukraine,59,160503000000.0,Mixed-market,Ukrainian hryvnia,Heavy industry
 Bulgaria,69,89040400000.0,"Open, free-market based",Bulgarian lev,Tourism
 Slovak Republic,70,115469000000.0,Mixed-market,Euro,Service sector
 Luxembourg,71,82274800000.0,Mixed,Euro,Banking
@@ -29,7 +29,7 @@ Belarus,74,72793500000.0,Market socialist,Belarusian rubel,Food
 Lithuania,78,70334300000.0,Market,Euro,Oil refinement
 Serbia,80,63501800000.0,"Open, free-market based",New Serbian dinar,Energy and the automotive industry
 Croatia,82,70964600000.0,Mixed-market,Croatian kuna,Manufacturing
-Azerbaijan,82,192146000000.0,Mixed-market,Azerbaijani Manat,Oil
+Azerbaijan,83,192146000000.0,Mixed-market,Azerbaijani Manat,Oil
 Slovenia,93,62117800000.0,Mixed-market,Euro,Service sector
 Moldova,98,14420900000.0,Mixed,Moldovan leu,Food processing
 Latvia,100,41153900000.0,Open,Euro,Textiles
@@ -37,8 +37,8 @@ Estonia,102,38100800000.0,Market-based,Euro,Transportation
 Cyprus,104,28439100000.0,Mixed,Euro,Tourism
 Iceland,109,27841600000.0,Social market,Iceland krona,Tourism
 Georgia,115,82210000000.0,Small transitional market,Tbilisi,Agribusiness
-Bosnia and Herzegovina,115,24527500000.0,Transitional,Bosnia and Herzegovina convertible mark,Mineral
-Armenia,115,58497000000.0,Mixed-market,Armenian Dram,Mining
+Bosnia and Herzegovina,116,24527500000.0,Transitional,Bosnia and Herzegovina convertible mark,Mineral
+Armenia,117,58497000000.0,Mixed-market,Armenian Dram,Mining
 Albania,125,18882100000.0,"Open, free-market based",Albanian lek,Agriculture
 North Macedonia,130,13563100000.0,Mixed-market,Macedonian denar,Textile industry
 Malta,131,17765300000.0,Mixed,Euro,Tourism
