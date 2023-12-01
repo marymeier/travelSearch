@@ -323,9 +323,9 @@ def delete_national_cuisine_rating(user_id, country_name):
 
     return True
 
-# def main():
-#     delete_user("bschneider")
-#     query_all_users()
+def main():
+    #delete_user("bschneider")
+    query_all_users()
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()

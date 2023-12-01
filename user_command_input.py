@@ -41,9 +41,9 @@ def print_command_list():
     print("\t\033[1mEnter 'delete econ cost'\033[0m" +
           "\n\t\t- Removes a previously added economic estimate" +
           "\n\t\t- Example 'delete econ cost'\n")
-    print("\t\033[1mEnter 'add cusine rating'\033[0m" +
+    print("\t\033[1mEnter 'add cuisine rating'\033[0m" +
           "\n\t\t- You can your national cuisine rating based on past experience" +
-          "\n\t\t- Example 'add cusine rating'\n")
+          "\n\t\t- Example 'add cuisine rating'\n")
     print("\t\033[1mEnter 'delete cusine rating'\033[0m" +
           "\n\t\t- Removes a previously added national cuisine rating" +
           "\n\t\t- Example 'delete cusine rating'\n")
@@ -105,6 +105,22 @@ def print_country_specific_info(user_input):
         print("\n\nNational Security:\n")
         for key, value in database_queries.query_national_security_attributes(country).items():
             print(f"{key:40}{value}")
+            
+def add_fun_fact():
+    country_name = input("\n\t\tLet's add your fun fact! First, which country do you want to add a fun fact about? \n\t")
+    fun_fact = input("\n\t\tWhat is your fun fact? \n\t")
+    
+    user_input = input("\n\t\tAre you sure you want to add this fact? [y/n]\n\t")
+    user_input.lower()
+    if user_input in ['y', 'yes']:
+        print("\n\t\tGreat! Thanks for adding that fact! You can delete it at any time.\n\t")
+        database_queries.add_tourist_attraction_fun_fact(country_name, fun_fact)
+    else:
+        print("Okay, it will not be added. You can add another at any time.")
+        
+def delete_fun_fact():
+    country_name = input("\n\t\tWhat country was your fun fact about?\n\t")
+    fun_fact = input("\n\t\tWhat is your fun fact? \n\t")
 
 def user_command_loop():
     country_list = overall_country_queries.query_country_names()
@@ -131,11 +147,15 @@ def user_command_loop():
             print("\n\t\tCountry Overview:\n")
             for key, value in overall_country_queries.query_country_overview(user_input.split()[0].title()).items():
                 print(f"\t\t{key:40}{value}")
+        elif user_input in ['add fun fact', 'fun fact', 'fact']:
+            add_fun_fact();
+        elif user_input in ['delete fun fact']:
+            delete_fun_fact();
         else:
             print("Your command did not match any of the acceptable ones...")
             print("You may have mispelled a country or request.")
 
 
     # Need to add functionality for last 6 commands the 3 add ratings and 3 delete ratings
-    # Gotta make sure to check that scale is 0-10 for cusine rating
+    # Gotta make sure to check that scale is 0-10 for cuisine rating
     # need to ask user for country_name and what they want to add

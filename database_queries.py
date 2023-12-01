@@ -301,4 +301,16 @@ def query_climate_attributes(user_inputted_country_name):
     
     connection.close()
 
-    return user_output
+def add_tourist_attraction_fun_fact(user_inputted_country_name, user_inputted_fun_fact):
+    connection = sqlite3.connect('travelSearch.db')
+    cursor = connection.cursor()
+    
+    country_name = format_country_name(user_inputted_country_name)
+    fun_fact = user_inputted_fun_fact.lower().title()
+    
+    update_query = """UPDATE Users
+                      SET tourist_attraction_fun_fact = ?
+                      WHERE country_name = ?;
+                   """
+    cursor.execute(update_query, (country_name, fun_fact))
+    connection.close()
