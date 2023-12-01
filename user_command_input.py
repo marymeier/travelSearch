@@ -179,7 +179,7 @@ def user_command_loop():
     print_command_list()
     while True:        
         user_input = input("\n\t\tPlease enter your next command, type \033[1m'h'\033[0m for the list of commands:\n\t")
-        user_input.lower()
+        user_input = user_input.lower()
 
         if user_input in ['e', 'exit']:
             break
