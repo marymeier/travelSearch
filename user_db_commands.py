@@ -110,19 +110,19 @@ def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction
                 # Update existing tourist_attraction_fun_fact
                 update_command = f"UPDATE Users SET tourist_attraction_fun_fact = '{tourist_attraction_fun_fact}' WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
                 cursor.execute(update_command)
-                print("Tourist attraction fun fact updated successfully.")
+                print("\n\t\tTourist attraction fun fact updated successfully.\n\t")
             else:
-                print("No changes made, original submission stands.")
+                print("\n\t\tNo changes made, original submission stands.\n\t")
         else:
             # Insert tourist_attraction_fun_fact if it doesn't exist
             update_command = f"UPDATE Users SET tourist_attraction_fun_fact = '{tourist_attraction_fun_fact}' WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
             cursor.execute(update_command)
-            print("Tourist attraction fun fact inserted successfully.")
+            print("\n\t\tTourist attraction fun fact inserted successfully.\n\t")
     else:
         # If no record exists, insert a new record
         insert_command = f"UPDATE Users SET country_name = '{country_name}', tourist_attraction_fun_fact = '{tourist_attraction_fun_fact}' WHERE user_id = '{user_id}'"
         cursor.execute(insert_command)
-        print("New Tourist Attraction Fun Fact inserted successfully.")
+        print("\n\t\tNew Tourist Attraction Fun Fact inserted successfully.\n\t")
 
     connection.commit()
     connection.close()
@@ -152,11 +152,11 @@ def delete_tourist_attraction_fun_fact(user_id, country_name):
             # Delete existing tourist_attraction_fun_fact
             delete_command = f"UPDATE Users SET tourist_attraction_fun_fact = NULL WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
             cursor.execute(delete_command)
-            print("Your tourist attraction fun fact was deleted successfully.")
+            print("\n\t\tYour tourist attraction fun fact was deleted successfully.\n\t")
         else:
-            print(f"No tourist attraction fun fact exists for your user_id: {user_id} in {country_name}.")
+            print(f"\n\t\tNo tourist attraction fun fact exists for your user_id: {user_id} in {country_name}.\n\t")
     else:
-        print(f"No record found for user {user_id} in {country_name}.")
+        print(f"\n\t\tNo record found for user {user_id} in {country_name}.\n\t")
 
     connection.commit()
     connection.close()
@@ -190,19 +190,19 @@ def insert_economic_cost_of_stay(user_id, country_name, economic_cost_of_stay):
                 # Update existing economic_cost_of_stay
                 update_command = f"UPDATE Users SET economic_cost_of_stay = '{economic_cost_of_stay}' WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
                 cursor.execute(update_command)
-                print("Your estimated economic cost of stay for a week was updated successfully.")
+                print("\n\t\tYour estimated economic cost of stay for a week was updated successfully.\n\t")
             else:
-                print("No changes made, original submission stands.")
+                print("\n\t\tNo changes made, original submission stands.\n\t")
         else:
             # Insert economic_cost_of_stay if it doesn't exist
             update_command = f"UPDATE Users SET economic_cost_of_stay = '{economic_cost_of_stay}' WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
             cursor.execute(update_command)
-            print("Your estimated economic cost of stay for a week was inserted successfully.")
+            print("\n\t\tYour estimated economic cost of stay for a week was inserted successfully.\n\t")
     else:
         # If no record exists, insert a new record
         insert_command = f"UPDATE Users SET country_name = '{country_name}', economic_cost_of_stay = '{economic_cost_of_stay}' WHERE user_id = '{user_id}'"
         cursor.execute(insert_command)
-        print("Your new Estimated economic cost of stay for a week was inserted successfully.")
+        print("\n\t\tYour new Estimated economic cost of stay for a week was inserted successfully.\n\t")
 
     connection.commit()
     connection.close()
@@ -232,11 +232,11 @@ def delete_economic_cost_of_stay(user_id, country_name):
             # Delete existing economic_cost_of_stay
             delete_command = f"UPDATE Users SET economic_cost_of_stay = NULL WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
             cursor.execute(delete_command)
-            print("Your estimated economic cost of stay for a week was deleted successfully.")
+            print("\n\t\tYour estimated economic cost of stay for a week was deleted successfully.\n\t")
         else:
-            print(f"No estimated economic cost of stay for a week exists for your user_id: {user_id} in {country_name}.")
+            print(f"\n\t\tNo estimated economic cost of stay for a week exists for your user_id: {user_id} in {country_name}.\n\t")
     else:
-        print(f"No record found for user {user_id} in {country_name}.")
+        print(f"\n\t\tNo record found for user {user_id} in {country_name}.\n\t")
 
     connection.commit()
     connection.close()
@@ -270,19 +270,19 @@ def insert_national_cuisine_rating(user_id, country_name, national_cuisine_ratin
                 # Update existing national_cuisine_rating
                 update_command = f"UPDATE Users SET national_cuisine_rating = '{national_cuisine_rating}' WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
                 cursor.execute(update_command)
-                print("The National cuisine rating was updated successfully.")
+                print("\n\t\tThe National cuisine rating was updated successfully.\n\t")
             else:
-                print("No changes made, original submission stands.")
+                print("\n\t\tNo changes made, original submission stands.\n\t")
         else:
             # Insert national_cuisine_rating if it doesn't exist
             update_command = f"UPDATE Users SET national_cuisine_rating = '{national_cuisine_rating}' WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
             cursor.execute(update_command)
-            print("The National cuisine rating was inserted successfully.")
+            print("\n\t\tThe National cuisine rating was inserted successfully.\n\t")
     else:
         # If no record exists, insert a new record
         insert_command = f"UPDATE Users SET country_name = '{country_name}', national_cuisine_rating = '{national_cuisine_rating}' WHERE user_id = '{user_id}'"
         cursor.execute(insert_command)
-        print("The National cuisine rating was inserted successfully.")
+        print("\n\t\tThe National cuisine rating was inserted successfully.\n\t")
 
     connection.commit()
     connection.close()
@@ -312,11 +312,11 @@ def delete_national_cuisine_rating(user_id, country_name):
             # Delete existing national_cuisine_rating
             delete_command = f"UPDATE Users SET national_cuisine_rating = NULL WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
             cursor.execute(delete_command)
-            print("Your national cuisine rating was deleted successfully.")
+            print("\n\t\tYour national cuisine rating was deleted successfully.\n\t")
         else:
-            print(f"No national cuisine rating exists for your user_id: {user_id} in {country_name}.")
+            print(f"\n\t\tNo national cuisine rating exists for your user_id: {user_id} in {country_name}.\n\t")
     else:
-        print(f"No record found for user {user_id} in {country_name}.")
+        print(f"\n\t\tNo record found for user {user_id} in {country_name}.\n\t")
 
     connection.commit()
     connection.close()
