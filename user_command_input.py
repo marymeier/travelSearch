@@ -1,6 +1,7 @@
 import initial_user_housekeeping
 import overall_country_queries
 import database_queries
+import user_db_commands
 
 entity_list = ['capital city', 'capital_city', 'public transportation', 'transportation', 'public_transportation',
                'national cuisine', 'cuisine', 'national_cuisine', 'food', 'Economy', 'econ', 'climate', 'weather',
@@ -114,13 +115,31 @@ def add_fun_fact():
     user_input.lower()
     if user_input in ['y', 'yes']:
         print("\n\t\tGreat! Thanks for adding that fact! You can delete it at any time.\n\t")
-        database_queries.add_tourist_attraction_fun_fact(country_name, fun_fact)
+        user_db_commands.insert_tourist_attraction_fun_fact(initial_user_housekeeping.get_user_id(), country_name, fun_fact)
     else:
         print("Okay, it will not be added. You can add another at any time.")
         
 def delete_fun_fact():
     country_name = input("\n\t\tWhat country was your fun fact about?\n\t")
+    
+    user_input = input("\n\t\tAre you sure you want to delete? [y/n]\n\t")
+    user_input.lower()
+    if user_input in ['y', 'yes']:
+        user_db_commands.delete_tourist_attraction_fun_fact(initial_user_housekeeping.get_user_id(), country_name)
+    else:
+        print("Okay, it will not be deleted. You can come back to delete it at any time.")
+
+def add_fun_fact():
+    country_name = input("\n\t\tLet's add your fun fact! First, which country do you want to add a fun fact about? \n\t")
     fun_fact = input("\n\t\tWhat is your fun fact? \n\t")
+    
+    user_input = input("\n\t\tAre you sure you want to add this fact? [y/n]\n\t")
+    user_input.lower()
+    if user_input in ['y', 'yes']:
+        print("\n\t\tGreat! Thanks for adding that fact! You can delete it at any time.\n\t")
+        user_db_commands.insert_tourist_attraction_fun_fact(initial_user_housekeeping.get_user_id(), country_name, fun_fact)
+    else:
+        print("Okay, it will not be added. You can add another at any time.")
 
 def user_command_loop():
     country_list = overall_country_queries.query_country_names()
