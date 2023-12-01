@@ -4,7 +4,7 @@ import database_queries
 import user_db_commands
 
 entity_list = ['capital city', 'capital_city', 'public transportation', 'transportation', 'public_transportation',
-               'national cuisine', 'cuisine', 'national_cuisine', 'food', 'Economy', 'econ', 'climate', 'weather',
+               'national cuisine', 'cuisine', 'national_cuisine', 'food', 'economy', 'econ', 'climate', 'weather',
                'tourist attractions', 'tourism', 'attractions', 'tourist_attractions', 'national security',
                'security', 'national_security']
 
@@ -209,7 +209,7 @@ def user_command_loop():
             delete_cuisine_rating()
         else:
             print("\n\t\tYour command did not match any of the acceptable ones...")
-            print("You may have mispelled a country or request.")
+            print("\n\t\tYou may have mispelled a country or request.")
 
 
     # Need to add functionality for last 6 commands the 3 add ratings and 3 delete ratings
