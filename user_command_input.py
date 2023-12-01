@@ -47,7 +47,7 @@ def print_command_list():
           "\n\t\t- Example 'add cuisine rating'\n")
     print("\t\033[1mEnter 'delete cuisine rating'\033[0m" +
           "\n\t\t- Removes a previously added national cuisine rating" +
-          "\n\t\t- Example 'delete cusine rating'\n")
+          "\n\t\t- Example 'delete cuisine rating'\n")
 
 def print_country_list(country_list):
     midpoint1 = len(country_list) // 3
@@ -74,7 +74,7 @@ def print_entity_list():
         "\n\t\t\t- Climate or weather" +
         "\n\t\t\t- Tourist Attractions or tourism or attractions or tourist_attractions" +
         "\n\t\t\t- National Security or security or national_security" +
-        "\n\t\t\t- Example: \033[1m'Italy Economy'\033[0m or \033[1m'norway Climate'\033[0m or \033[1m'russia econ'\033[0m")
+        "\n\t\t\t- Example: \033[1m'Italy Economy'\033[0m or \033[1m'Norway Climate'\033[0m or \033[1m'Russia econ'\033[0m")
 
 def print_country_specific_info(user_input):
     country = user_input.split()[0].title()
@@ -95,7 +95,7 @@ def print_country_specific_info(user_input):
         print("\n\t\tnational cuisine attributes:\n")
         for key, value in database_queries.query_national_cuisine_attributes(initial_user_housekeeping.get_user_id(), country).items():
             print(f"\t\t{key:45}{value}")
-    elif specific_table in ['Economy', 'econ']:
+    elif specific_table in ['economy', 'econ']:
         print("\n\t\tEconomy attributes:\n")
         for key, value in database_queries.query_economy_attributes(initial_user_housekeeping.get_user_id(), country).items():
             print(f"\t\t{key:55}{value}")
@@ -108,7 +108,7 @@ def print_country_specific_info(user_input):
         for key, value in database_queries.query_tourist_attractions_attributes(initial_user_housekeeping.get_user_id(), country).items():
             print(f"\t\t{key:40}{value}")
     else:
-        print("\n\nNational Security:\n")
+        print("\n\t\tNational Security:\n")
         for key, value in database_queries.query_national_security_attributes(country).items():
             print(f"{key:40}{value}")
             
