@@ -176,7 +176,7 @@ def query_economy_attributes(user_id, user_inputted_country_name):
         if rating_result and rating_result[0] is not None:
             user_output["User Estimated Economic Cost of One Week Stay"] = f"${rating_result[0]}"
         else:
-            user_output["User Estimated Economic Cost of One Week Stay"] = f"No rating currently exists for {user_id}"
+            user_output["User Estimated Economic Cost of One Week Stay"] = f"No estimated cost currently exists for {user_id}"
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
@@ -257,7 +257,7 @@ def query_tourist_attractions_attributes(user_id, user_inputted_country_name):
         if rating_result and rating_result[0] is not None:
             user_output["User Tourist Attraction Fun Fact"] = f"{rating_result[0]}"
         else:
-            user_output["User Tourist Attraction Fun Fact"] = f"No rating currently exists for {user_id}"
+            user_output["User Tourist Attraction Fun Fact"] = f"No fun fact currently exists for {user_id}"
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
