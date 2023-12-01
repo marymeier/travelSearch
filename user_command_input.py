@@ -3,7 +3,7 @@ import overall_country_queries
 import database_queries
 import user_db_commands
 
-entity_list = ['capital city', 'capital_city', 'public transportation', 'transportation', 'public_transportation',
+entity_list = ['capital city', 'capital_city', 'capital', 'public transportation', 'transportation', 'public_transportation',
                'national cuisine', 'cuisine', 'national_cuisine', 'food', 'economy', 'econ', 'climate', 'weather',
                'tourist attractions', 'tourism', 'attractions', 'tourist_attractions', 'national security',
                'security', 'national_security']
@@ -77,8 +77,13 @@ def print_entity_list():
         "\n\t\t\t- Example: \033[1m'Italy Economy'\033[0m or \033[1m'norway Climate'\033[0m or \033[1m'russia econ'\033[0m")
 
 def print_country_specific_info(user_input):
-    country, specific_table = user_input.split()[0].title(), user_input.split()[1].lower()
-    if specific_table in ['capital city', 'capital_city']:
+    country = user_input.split()[0].title()
+    if len(user_input.split()) == 2:
+        specific_table = user_input.split()[1].lower()
+    if len(user_input.split()) == 3:
+        specific_table = user_input.split()[1].lower() + " " + user_input.split()[2].lower()
+
+    if specific_table in ['capital city', 'capital_city', 'capital']:
         print("\n\t\tcapital city attributes:\n")
         for key, value in database_queries.query_capital_city_attributes(country).items():
             print(f"\t\t{key:25}{value}")
