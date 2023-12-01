@@ -193,12 +193,12 @@ def user_command_loop():
             print("\n\n\t\tCountry Attributes:")
             for key, value in database_queries.query_country_attributes(user_input.title()).items():
                 print(f"\t\t{key:25}{value:}")
-        elif user_input.split()[0].title() in country_list and (user_input.split()[1] in entity_list or (user_input.split()[1] + " " + user_input.split()[2]) in entity_list):
-            print_country_specific_info(user_input)
         elif user_input.split()[0].title() in country_list and user_input.split()[1] == 'all':
             print("\n\t\tCountry Overview:\n")
             for key, value in overall_country_queries.query_country_overview(user_input.split()[0].title()).items():
                 print(f"\t\t{key:40}{value}")
+        elif user_input.split()[0].title() in country_list and (user_input.split()[1] in entity_list or (user_input.split()[1] + " " + user_input.split()[2]) in entity_list):
+            print_country_specific_info(user_input)
         elif user_input in ['add fun fact', 'fun fact', 'fact']:
             add_fun_fact()
         elif user_input in ['delete fun fact']:
