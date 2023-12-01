@@ -49,18 +49,20 @@ def print_command_list():
           "\n\t\t- Example 'delete cuisine rating'\n")
 
 def print_country_list(country_list):
-    midpoint1 = len(country_list) // 3
-    midpoint2 = 2 * len(country_list) // 3
-
-    max_index_digits = len(str(len(country_list)))
-
-    # Print in three columns
     print("\nList of Countries:\n")
-    for i, (country1, country2, country3) in enumerate(zip(country_list[:midpoint1], country_list[midpoint1:midpoint2], country_list[midpoint2:]), start=1):
-        index_str1 = f"{i}.".ljust(max_index_digits + 1)
-        index_str2 = f"{i + midpoint1}.".ljust(max_index_digits + 1)
-        index_str3 = f"{i + midpoint2}.".ljust(max_index_digits + 1)
-        print(f"{index_str1} {country1.ljust(25)} {index_str2} {country2.ljust(25)} {index_str3} {country3}")
+    num_columns = 5
+
+    # Calculate number of rows
+    num_rows = -(-len(country_list) // num_columns)
+
+    # Print the formatted list
+    for i in range(num_rows):
+        for j in range(num_columns):
+            index = i + j * num_rows
+            if index < len(country_list):
+                print(f"{index + 1:2d}. {country_list[index]:<23}", end="")
+        print()
+
 
 def print_entity_list():
     print("\n\t\tEach country has the following country specific information offered about it:"+
