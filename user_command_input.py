@@ -157,9 +157,9 @@ def user_command_loop():
         elif user_input == "2":
             print_entity_list()
         elif user_input.title() in country_list:
-            print("\n\nCountry Attributes:")
+            print("\n\n\t\tCountry Attributes:")
             for key, value in database_queries.query_country_attributes(user_input.title()).items():
-                print(f"{key:25}{value:}")
+                print(f"\t\t{key:25}{value:}")
         elif user_input.split()[0].title() in country_list and user_input.split()[1] in entity_list:
             print_country_specific_info(user_input)
         elif user_input.split()[0].title() in country_list and user_input.split()[1] == 'all':
