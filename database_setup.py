@@ -11,7 +11,7 @@ def create_users_table():
     create_users_table = """CREATE TABLE Users (
                             user_id INT NOT NULL,
                             country_name VARCHAR(50),
-                            tourist_attraction_fun_fact VARCHAR(200),
+                            tourist_attraction_fun_fact VARCHAR(300),
                             economic_cost_of_stay FLOAT,
                             national_cuisine_rating FLOAT,
                             PRIMARY KEY(user_id, country_name),
