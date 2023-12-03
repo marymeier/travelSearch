@@ -113,6 +113,42 @@ def print_country_specific_info(user_input):
         for key, value in database_queries.query_national_security_attributes(country).items():
             print(f"\t\t{key:40}{value}")
             
+def print_two_country_specific_info(user_input):
+    country = user_input.split()[0] + " " + user_input.split()[1]
+    if len(user_input.split()) == 3:
+        specific_table = user_input.split()[2].lower()
+    if len(user_input.split()) == 4:
+        specific_table = user_input.split()[2].lower() + " " + user_input.split()[3].lower()
+
+    if specific_table in ['capital city', 'capital_city', 'capital']:
+        print("\n\t\tcapital city attributes:\n")
+        for key, value in database_queries.query_capital_city_attributes(country).items():
+            print(f"\t\t{key:25}{value}")
+    elif specific_table in ['public transportation', 'transportation', 'public_transportation']:
+        print("\n\t\tpublic transportation attributes:\n")
+        for key, value in database_queries.query_public_transportation_attributes(country).items():
+            print(f"\t\t{key:35}{value}")
+    elif specific_table in ['national cuisine', 'cuisine', 'national_cuisine', 'food']:
+        print("\n\t\tnational cuisine attributes:\n")
+        for key, value in database_queries.query_national_cuisine_attributes(initial_user_housekeeping.get_user_id(), country).items():
+            print(f"\t\t{key:45}{value}")
+    elif specific_table in ['economy', 'econ']:
+        print("\n\t\tEconomy attributes:\n")
+        for key, value in database_queries.query_economy_attributes(initial_user_housekeeping.get_user_id(), country).items():
+            print(f"\t\t{key:55}{value}")
+    elif specific_table in ['climate', 'weather']:
+        print("\n\t\tClimate:\n")
+        for key, value in database_queries.query_climate_attributes(country).items():
+            print(f"\t\t{key:35}{value}")
+    elif specific_table in ['tourist attractions', 'tourism', 'attractions', 'tourist_attractions']:
+        print("\n\t\tTourist Attractions:\n")
+        for key, value in database_queries.query_tourist_attractions_attributes(initial_user_housekeeping.get_user_id(), country).items():
+            print(f"\t\t{key:40}{value}")
+    else:
+        print("\n\t\tNational Security:\n")
+        for key, value in database_queries.query_national_security_attributes(country).items():
+            print(f"\t\t{key:40}{value}")
+            
 def add_fun_fact():
     country_name = input("\n\t\tLet's add your fun fact! First, which country do you want to add a fun fact about? \n\t")
     fun_fact = input("\n\t\tWhat is your fun fact? \n\t")
@@ -204,8 +240,14 @@ def user_command_loop():
             print("\n\t\tCountry Overview:\n")
             for key, value in overall_country_queries.query_country_overview(user_input.split()[0].title()).items():
                 print(f"\t\t{key:40}{value}")
+        elif (user_input.split()[0].title() + " " + user_input.split()[1].title()) in country_list and user_input.split()[2] == 'all':
+            print("\n\t\tCountry Overview:\n")
+            for key, value in overall_country_queries.query_country_overview(user_input.split()[0].title() + " " + user_input.split()[1].title()).items():
+                print(f"\t\t{key:40}{value}")
         elif user_input.split()[0].title() in country_list and (user_input.split()[1] in entity_list or (user_input.split()[1] + " " + user_input.split()[2]) in entity_list):
             print_country_specific_info(user_input)
+        elif (user_input.split()[0].title() + " " + user_input.split()[1].title()) in country_list and (user_input.split()[2] in entity_list or (user_input.split()[2] + " " + user_input.split()[3]) in entity_list):
+            print_two_country_specific_info(user_input)
         elif user_input in ['add fun fact', 'fun fact', 'fact']:
             add_fun_fact()
         elif user_input in ['delete fun fact']:
