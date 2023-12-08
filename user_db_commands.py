@@ -1,9 +1,18 @@
-import sqlite3
+#import sqlite3
 import overall_country_queries
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="dance4ever"
+)
+# Cursor object
+cursor = mydb.cursor()
 
 def query_all_users():
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     select_query = "SELECT * FROM Users;"
     cursor.execute(select_query)
@@ -13,11 +22,11 @@ def query_all_users():
     for row in rows:
         print(row)
 
-    connection.close()
+    mysql.connector.close()
 
 def create_new_user(user_id):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
     
     # Check if a user with the same user_id already exists
     check_existing_user_query = f"SELECT * FROM Users WHERE user_id = '{user_id}'"
@@ -27,22 +36,22 @@ def create_new_user(user_id):
 
     if existing_user:
         print(f"\n\t\tA user with the user_id  \033[1m'{user_id}'\033[0m already exists")
-        connection.close()
+        mysql.connector.close()
         return False
     else:
         # Insert a new user
         create_user_command = f"INSERT INTO Users (user_id) VALUES ('{user_id}')"
         cursor.execute(create_user_command)
         
-    connection.commit()
-    connection.close()
+    mysql.connector.commit()
+    mysql.connector.close()
 
     print(f"\t\tYour new account's user_id is: \033[1m'{user_id}'\033[0m be sure to save it somewhere safe!")
     return True
 
 def delete_user(user_id, country_name=None):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
     if country_name is not None:
         country_name = country_name.title()
 
@@ -55,23 +64,23 @@ def delete_user(user_id, country_name=None):
     
     cursor.execute(delete_user_command)
 
-    connection.commit()
-    connection.close()
+    mysql.connector.commit()
+    mysql.connector.close()
 
 def delete_all_users():
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     # Delete all rows from the Users table
     delete_command = "DELETE FROM Users"
     cursor.execute(delete_command)
 
-    connection.commit()
-    connection.close()
+    mysql.connector.commit()
+    mysql.connector.close()
 
 def user_exists(user_id):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     # Check if a record with the given user_id exists
     check_existing_record_query = f"SELECT * FROM Users WHERE user_id = '{user_id}'"
@@ -79,23 +88,23 @@ def user_exists(user_id):
 
     existing_record = cursor.fetchone()
 
-    connection.close()
+    mysql.connector.close()
 
     return existing_record is not None
 
 def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction_fun_fact):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
     country_name = country_name.title()
 
     available_countries = overall_country_queries.query_country_names()
     if country_name.title() not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
     elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
 
     # Check if a record with the same user_id and country_name already exists
@@ -129,32 +138,32 @@ def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction
             cursor.execute(insert_command)
             print("\n\t\tNew Tourist Attraction Fun Fact inserted successfully.\n\t")
 
-        connection.commit()
+        mysql.connector.commit()
         
     except Exception as e:
         # Rollback the transaction if an error occurs
-        connection.rollback()
+        mysql.connector.rollback()
         print(f"Transaction failed: {str(e)}")
 
     finally:
         # Close the database connection
-        connection.close()
+        mysql.connector.close()
 
     return True
 
 def delete_tourist_attraction_fun_fact(user_id, country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+   # connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
     country_name = country_name.title()
 
     available_countries = overall_country_queries.query_country_names()
     if country_name not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
     elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
 
     # Check if a record with the given user_id and country_name exists
@@ -176,32 +185,32 @@ def delete_tourist_attraction_fun_fact(user_id, country_name):
         else:
             print(f"\n\t\tNo record found for user {user_id} in {country_name}.\n\t")
 
-        connection.commit()
+        mysql.connector.commit()
     
     except Exception as e:
         # Rollback the transaction if an error occurs
-        connection.rollback()
+        mysql.connector.rollback()
         print(f"Transaction failed: {str(e)}")
 
     finally:
         # Close the database connection
-        connection.close() 
+        mysql.connector.close() 
     
     return True
 
 def insert_economic_cost_of_stay(user_id, country_name, economic_cost_of_stay):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
     country_name = country_name.title()
 
     available_countries = overall_country_queries.query_country_names()
     if country_name.title() not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
     elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
 
     # Check if a record with the same user_id and country_name already exists
@@ -236,32 +245,32 @@ def insert_economic_cost_of_stay(user_id, country_name, economic_cost_of_stay):
             cursor.execute(insert_command)
             print("\n\t\tYour new Estimated economic cost of stay for a week was inserted successfully.\n\t")
 
-        connection.commit()
+        mysql.connector.commit()
         
     except Exception as e:
         # Rollback the transaction if an error occurs
-        connection.rollback()
+        mysql.connector.rollback()
         print(f"Transaction failed: {str(e)}")
 
     finally:
         # Close the database connection
-        connection.close() 
+        mysql.connector.close() 
 
     return True
 
 def delete_economic_cost_of_stay(user_id, country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
     country_name = country_name.title()
 
     available_countries = overall_country_queries.query_country_names()
     if country_name not in available_countries:
         print(f"Error: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
     elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
 
     # Check if a record with the given user_id and country_name exists
@@ -283,32 +292,32 @@ def delete_economic_cost_of_stay(user_id, country_name):
         else:
             print(f"\n\t\tNo record found for user {user_id} in {country_name}.\n\t")
 
-        connection.commit()
+        mysql.connector.commit()
         
     except Exception as e:
         # Rollback the transaction if an error occurs
-        connection.rollback()
+        mysql.connector.rollback()
         print(f"Transaction failed: {str(e)}")
 
     finally:
         # Close the database connection
-        connection.close() 
+        mysql.connector.close() 
 
     return True
 
 def insert_national_cuisine_rating(user_id, country_name, national_cuisine_rating):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
     country_name = country_name.title()
 
     available_countries = overall_country_queries.query_country_names()
     if country_name not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
     elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
 
     # Check if a record with the same user_id and country_name already exists
@@ -343,32 +352,32 @@ def insert_national_cuisine_rating(user_id, country_name, national_cuisine_ratin
             cursor.execute(insert_command)
             print("\n\t\tThe National cuisine rating was inserted successfully.\n\t")
 
-        connection.commit()
+        mysql.connector.commit()
     
     except Exception as e:
         # Rollback the transaction if an error occurs
-        connection.rollback()
+        mysql.connector.rollback()
         print(f"Transaction failed: {str(e)}")
 
     finally:
         # Close the database connection
-        connection.close() 
+        mysql.connector.close() 
 
     return True
 
 def delete_national_cuisine_rating(user_id, country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
     country_name = country_name.title()
 
     available_countries = overall_country_queries.query_country_names()
     if country_name not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
     elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
-        connection.close()
+        mysql.connector.close()
         return False
 
     # Check if a record with the given user_id and country_name exists
@@ -390,16 +399,16 @@ def delete_national_cuisine_rating(user_id, country_name):
         else:
             print(f"\n\t\tNo record found for user {user_id} in {country_name}.\n\t")
 
-        connection.commit()
+        mysql.connector.commit()
     
     except Exception as e:
         # Rollback the transaction if an error occurs
-        connection.rollback()
+        mysql.connector.rollback()
         print(f"Transaction failed: {str(e)}")
 
     finally:
         # Close the database connection
-        connection.close() 
+        mysql.connector.close() 
 
     return True
 

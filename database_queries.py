@@ -1,11 +1,21 @@
-import sqlite3
+#import sqlite3
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="dance4ever"
+)
+
+# Cursor object
+cursor = mydb.cursor()
 
 def format_country_name(user_inputted_country_name):
     return user_inputted_country_name.lower().title()
 
 def query_country_attributes(user_inputted_country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = travelSearch.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -32,13 +42,13 @@ def query_country_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    connection.close()
+    mysql.connector.close()
 
     return user_output
 
 def query_capital_city_attributes(user_inputted_country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -63,13 +73,13 @@ def query_capital_city_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    connection.close()
+    mysql.connector.close()
 
     return user_output
 
 def query_public_transportation_attributes(user_inputted_country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -96,13 +106,13 @@ def query_public_transportation_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    connection.close()
+    mysql.connector.close()
 
     return user_output
 
 def query_national_cuisine_attributes(user_id, user_inputted_country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -136,13 +146,13 @@ def query_national_cuisine_attributes(user_id, user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    connection.close()
+    mysql.connector.close()
 
     return user_output
 
 def query_economy_attributes(user_id, user_inputted_country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -180,13 +190,13 @@ def query_economy_attributes(user_id, user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    connection.close()
+    mysql.connector.close()
 
     return user_output
 
 def query_national_security_attributes(user_inputted_country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -216,13 +226,13 @@ def query_national_security_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    connection.close()
+    mysql.connector.close()
 
     return user_output
 
 def query_tourist_attractions_attributes(user_id, user_inputted_country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -261,13 +271,13 @@ def query_tourist_attractions_attributes(user_id, user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    connection.close()
+    mysql.connector.close()
 
     return user_output
 
 def query_climate_attributes(user_inputted_country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -299,5 +309,5 @@ def query_climate_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    connection.close()
+    mysql.connector.close()
     return user_output

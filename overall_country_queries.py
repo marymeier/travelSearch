@@ -1,11 +1,21 @@
-import sqlite3
+#import sqlite3
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="dance4ever"
+)
+
+# Cursor object
+cursor = mydb.cursor()
 
 def format_country_name(user_inputted_country_name):
     return user_inputted_country_name.lower().title()
 
 def query_country_names():
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     select_query = "SELECT name as country_names FROM Country"
     cursor.execute(select_query)
@@ -16,7 +26,7 @@ def query_country_names():
     for row in rows:
         available_countries.append(row[0])
     
-    connection.close()
+    #connection.close()
 
     return available_countries
 

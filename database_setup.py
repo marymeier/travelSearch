@@ -1,11 +1,19 @@
-import sqlite3
 import csv
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="dance4ever"
+)
+# Cursor object
+cursor = mydb.cursor()
+cursor.execute("CREATE DATABASE travelSearch.db")
 
 def create_users_table():
     # Connect to sqlite and connect to tableSearch database
-    connection = sqlite3.connect('travelSearch.db')
-    # Cursor object
-    cursor = connection.cursor()
+   # connection = sqlite3.connect('travelSearch.db')
+    
     # Start us with a clean slate and rebuilds a User table if it already exists
     cursor.execute('DROP TABLE IF EXISTS Users')
     create_users_table = """CREATE TABLE Users (
@@ -21,14 +29,14 @@ def create_users_table():
                             """
     cursor.execute(create_users_table)
 
-    connection.commit()
-    connection.close()
+    mysql.connector.commit()
+    #mysql.connector.close()
 
 def create_and_populate_country_table():
     # Connect to sqlite and connect to tableSearch database
-    connection = sqlite3.connect('travelSearch.db')
+    #connection = sqlite3.connect('travelSearch.db')
     # Cursor object
-    cursor = connection.cursor()
+    #cursor = connection.cursor()
     # Start us with a clean slate and rebuilds a Country table if it already exists
     cursor.execute('DROP TABLE IF EXISTS Country')
     create_country_table = """CREATE TABLE Country (
@@ -50,6 +58,7 @@ def create_and_populate_country_table():
         
         insert_records = "INSERT INTO Country (name, most_common_religion, official_language, government_struct, time_zone) VALUES (?,?,?,?,?)"
         cursor.executemany(insert_records, contents)
+
     
     # # This is just to validate we have the country correctly:
     # select_all = "SELECT * FROM Country"
@@ -57,15 +66,15 @@ def create_and_populate_country_table():
     # for r in rows:
     #     print(r)
 
-    connection.commit()
-    connection.close()
+    mysql.connector.commit()
+    #mysql.connector.close()
         
 def create_and_populate_capital_city_table():
     # Connect to sqlite and 
     # Connect to tableSearch database
-    connection = sqlite3.connect('travelSearch.db')
+    #connection = sqlite3.connect('travelSearch.db')
     # Cursor object
-    cursor = connection.cursor()
+    #cursor = connection.cursor()
      # Start us with a clean slate and rebuilds a Capital_City table if it already exists
     cursor.execute('DROP TABLE IF EXISTS Capital_City')
     create_capital_city_table = """CREATE TABLE Capital_City (
@@ -94,15 +103,15 @@ def create_and_populate_capital_city_table():
     # for r in rows:
     #     print(r)
 
-    connection.commit()
-    connection.close()
+    mysql.connector.commit()
+    #mysql.connector.close()
 
 def create_and_populate_public_transportation_table():
     # Connect to sqlite and 
     # Connect to tableSearch database
-    connection = sqlite3.connect('travelSearch.db')
+    #connection = sqlite3.connect('travelSearch.db')
     # Cursor object
-    cursor = connection.cursor()
+    #cursor = connection.cursor()
      # Start us with a clean slate and rebuilds a Public_Transportation table if it already exists
     cursor.execute('DROP TABLE IF EXISTS Public_Transportation')
     create_public_transportation_table = """CREATE TABLE Public_Transportation (
@@ -132,15 +141,15 @@ def create_and_populate_public_transportation_table():
     # for r in rows:
     #     print(r)
 
-    connection.commit()
-    connection.close()
+    mysql.connector.commit()
+    #mysql.connector.close()
 
 def create_and_populate_national_cuisine_table():
     # Connect to sqlite and 
     # Connect to tableSearch database
-    connection = sqlite3.connect('travelSearch.db')
+    #connection = sqlite3.connect('travelSearch.db')
     # Cursor object
-    cursor = connection.cursor()
+    #cursor = connection.cursor()
      # Start us with a clean slate and rebuilds a National_Cuisine table if it already exists
     cursor.execute('DROP TABLE IF EXISTS National_Cuisine')
     create_national_cuisine_table = """CREATE TABLE National_Cuisine (
@@ -169,15 +178,15 @@ def create_and_populate_national_cuisine_table():
     # for r in rows:
     #     print(r)
 
-    connection.commit()
-    connection.close()
+    mysql.connector.commit()
+    #mysql.connector.close()
 
 def create_and_populate_economy_table():
     # Connect to sqlite and 
     # Connect to tableSearch database
-    connection = sqlite3.connect('travelSearch.db')
+    #connection = sqlite3.connect('travelSearch.db')
     # Cursor object
-    cursor = connection.cursor()
+    #cursor = connection.cursor()
      # Start us with a clean slate and rebuilds a Economy table if it already exists
     cursor.execute('DROP TABLE IF EXISTS Economy')
     create_economy_table = """CREATE TABLE Economy (
@@ -208,15 +217,15 @@ def create_and_populate_economy_table():
     # for r in rows:
     #     print(r)
 
-    connection.commit()
-    connection.close()
+    mysql.connector.commit()
+    #mysql.connector.close()
 
 def create_and_populate_national_security_table():
     # Connect to sqlite and 
     # Connect to tableSearch database
-    connection = sqlite3.connect('travelSearch.db')
+    #connection = sqlite3.connect('travelSearch.db')
     # Cursor object
-    cursor = connection.cursor()
+    #cursor = connection.cursor()
      # Start us with a clean slate and rebuilds a National_Security table if it already exists
     cursor.execute('DROP TABLE IF EXISTS National_Security')
     create_economy_table = """CREATE TABLE National_Security (
@@ -246,15 +255,15 @@ def create_and_populate_national_security_table():
     # for r in rows:
     #     print(r)
 
-    connection.commit()
-    connection.close()
+    mysql.connnector.commit()
+    #mysql.connector.close()
 
 def create_and_populate_tourist_attractions_table():
     # Connect to sqlite and 
     # Connect to tableSearch database
-    connection = sqlite3.connect('travelSearch.db')
+    #connection = sqlite3.connect('travelSearch.db')
     # Cursor object
-    cursor = connection.cursor()
+    #cursor = connection.cursor()
      # Start us with a clean slate and rebuilds a Tourist_Attractions table if it already exists
     cursor.execute('DROP TABLE IF EXISTS Tourist_Attractions')
     create_economy_table = """CREATE TABLE Tourist_Attractions (
@@ -283,15 +292,15 @@ def create_and_populate_tourist_attractions_table():
     # for r in rows:
     #     print(r)
 
-    connection.commit()
-    connection.close()
+    mysql.connector.commit()
+    #mysql.connector.close()
 
 def create_and_populate_climate_table():
     # Connect to sqlite and 
     # Connect to tableSearch database
-    connection = sqlite3.connect('travelSearch.db')
+    #connection = sqlite3.connect('travelSearch.db')
     # Cursor object
-    cursor = connection.cursor()
+    #cursor = connection.cursor()
      # Start us with a clean slate and rebuilds a Climate table if it already exists
     cursor.execute('DROP TABLE IF EXISTS Climate')
     create_economy_table = """CREATE TABLE Climate (
@@ -321,13 +330,12 @@ def create_and_populate_climate_table():
     # for r in rows:
     #     print(r)
 
-    connection.commit()
-    connection.close()
+    mysql.connector.commit()
+    #mysql.connector.close()
 
 # Private function
 def _initialize_sql_tables():
     create_users_table()
-
     create_and_populate_country_table()
     create_and_populate_capital_city_table()
     create_and_populate_public_transportation_table()
