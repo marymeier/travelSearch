@@ -93,6 +93,10 @@ def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
         connection.close()
         return False
+    elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
+        print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
+        connection.close()
+        return False
 
     # Check if a record with the same user_id and country_name already exists
     check_existing_record_query = f"SELECT * FROM Users WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
@@ -104,7 +108,7 @@ def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction
             # If a record exists, check if tourist_attraction_fun_fact is already set
             if existing_record[2] is not None:
                 # If tourist_attraction_fun_fact already exists, ask the user if they want to update it
-                update_confirmation = input(f"\n\t\tA tourist attraction fun fact already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no): ")
+                update_confirmation = input(f"\n\t\tA tourist attraction fun fact already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no):\n\t")
                 
                 if update_confirmation.lower() == 'yes':
                     # Update existing tourist_attraction_fun_fact
@@ -145,6 +149,10 @@ def delete_tourist_attraction_fun_fact(user_id, country_name):
 
     available_countries = overall_country_queries.query_country_names()
     if country_name not in available_countries:
+        print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
+        connection.close()
+        return False
+    elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
         connection.close()
         return False
@@ -191,6 +199,10 @@ def insert_economic_cost_of_stay(user_id, country_name, economic_cost_of_stay):
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
         connection.close()
         return False
+    elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
+        print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
+        connection.close()
+        return False
 
     # Check if a record with the same user_id and country_name already exists
     check_existing_record_query = f"SELECT * FROM Users WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
@@ -203,7 +215,7 @@ def insert_economic_cost_of_stay(user_id, country_name, economic_cost_of_stay):
             # If a record exists, check if economic_cost_of_stay is already set
             if existing_record[3] is not None:
                 # If economic_cost_of_stay already exists, ask the user if they want to update it
-                update_confirmation = input(f"\n\t\tAn estimated economic cost of stay for a week already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no): ")
+                update_confirmation = input(f"\n\t\tAn estimated economic cost of stay for a week already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no):\n\t")
                 
                 if update_confirmation.lower() == 'yes':
                     # Update existing economic_cost_of_stay
@@ -247,6 +259,10 @@ def delete_economic_cost_of_stay(user_id, country_name):
         print(f"Error: {country_name} is not a valid country. Please enter a valid country")
         connection.close()
         return False
+    elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
+        print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
+        connection.close()
+        return False
 
     # Check if a record with the given user_id and country_name exists
     check_existing_record_query = f"SELECT * FROM Users WHERE user_id = '{user_id}' AND country_name = '{country_name}'"
@@ -287,7 +303,11 @@ def insert_national_cuisine_rating(user_id, country_name, national_cuisine_ratin
 
     available_countries = overall_country_queries.query_country_names()
     if country_name not in available_countries:
-        print(f"Error: {country_name} is not a valid country. Please enter a valid country")
+        print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
+        connection.close()
+        return False
+    elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
+        print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
         connection.close()
         return False
 
@@ -302,7 +322,7 @@ def insert_national_cuisine_rating(user_id, country_name, national_cuisine_ratin
             # If a record exists, check if national_cuisine_rating is already set
             if existing_record[4] is not None:
                 # If national_cuisine_rating already exists, ask the user if they want to update it
-                update_confirmation = input(f"\n\t\tA national cuisine rating already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no): ")
+                update_confirmation = input(f"\n\t\tA national cuisine rating already exists for user {user_id} in {country_name}. Do you want to update it? (yes/no):\n\t")
                 
                 if update_confirmation.lower() == 'yes':
                     # Update existing national_cuisine_rating
@@ -343,6 +363,10 @@ def delete_national_cuisine_rating(user_id, country_name):
 
     available_countries = overall_country_queries.query_country_names()
     if country_name not in available_countries:
+        print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
+        connection.close()
+        return False
+    elif len(country_name.split()) == 2 and (country_name.split()[0].title() + " " + country_name.split()[1].title()) not in available_countries:
         print(f"\n\t\tError: {country_name} is not a valid country. Please enter a valid country")
         connection.close()
         return False
