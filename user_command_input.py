@@ -2,7 +2,6 @@ import initial_user_housekeeping
 import overall_country_queries
 import database_queries
 import user_db_commands
-import mysql.connector
 
 entity_list = ['capital city', 'capital_city', 'capital', 'public transportation', 'transportation',
                'transport', 'national cuisine', 'cuisine', 'food', 'economy', 'econ', 'climate', 'weather',

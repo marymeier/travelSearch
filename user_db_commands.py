@@ -22,7 +22,7 @@ def query_all_users():
     for row in rows:
         print(row)
 
-    mysql.connector.close()
+    #mysql.connector.close()
 
 def create_new_user(user_id):
     #connection = sqlite3.connect('travelSearch.db')
@@ -44,7 +44,7 @@ def create_new_user(user_id):
         cursor.execute(create_user_command)
         
     mysql.connector.commit()
-    mysql.connector.close()
+    #mysql.connector.close()
 
     print(f"\t\tYour new account's user_id is: \033[1m'{user_id}'\033[0m be sure to save it somewhere safe!")
     return True
@@ -65,7 +65,7 @@ def delete_user(user_id, country_name=None):
     cursor.execute(delete_user_command)
 
     mysql.connector.commit()
-    mysql.connector.close()
+    #mysql.connector.close()
 
 def delete_all_users():
     #connection = sqlite3.connect('travelSearch.db')
@@ -76,7 +76,7 @@ def delete_all_users():
     cursor.execute(delete_command)
 
     mysql.connector.commit()
-    mysql.connector.close()
+    #mysql.connector.close()
 
 def user_exists(user_id):
     #connection = sqlite3.connect('travelSearch.db')
@@ -88,7 +88,7 @@ def user_exists(user_id):
 
     existing_record = cursor.fetchone()
 
-    mysql.connector.close()
+    #mysql.connector.close()
 
     return existing_record is not None
 
@@ -145,9 +145,9 @@ def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction
         mysql.connector.rollback()
         print(f"Transaction failed: {str(e)}")
 
-    finally:
+    #finally:
         # Close the database connection
-        mysql.connector.close()
+        #mysql.connector.close()
 
     return True
 
@@ -192,9 +192,9 @@ def delete_tourist_attraction_fun_fact(user_id, country_name):
         mysql.connector.rollback()
         print(f"Transaction failed: {str(e)}")
 
-    finally:
+    #finally:
         # Close the database connection
-        mysql.connector.close() 
+        #mysql.connector.close() 
     
     return True
 
@@ -252,9 +252,9 @@ def insert_economic_cost_of_stay(user_id, country_name, economic_cost_of_stay):
         mysql.connector.rollback()
         print(f"Transaction failed: {str(e)}")
 
-    finally:
+    #finally:
         # Close the database connection
-        mysql.connector.close() 
+       # mysql.connector.close() 
 
     return True
 
@@ -299,9 +299,9 @@ def delete_economic_cost_of_stay(user_id, country_name):
         mysql.connector.rollback()
         print(f"Transaction failed: {str(e)}")
 
-    finally:
+    #finally:
         # Close the database connection
-        mysql.connector.close() 
+       # mysql.connector.close() 
 
     return True
 
@@ -359,9 +359,9 @@ def insert_national_cuisine_rating(user_id, country_name, national_cuisine_ratin
         mysql.connector.rollback()
         print(f"Transaction failed: {str(e)}")
 
-    finally:
+    #finally:
         # Close the database connection
-        mysql.connector.close() 
+        #mysql.connector.close() 
 
     return True
 

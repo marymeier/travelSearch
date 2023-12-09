@@ -32,8 +32,8 @@ def query_country_names():
 
 
 def query_country_overview(user_inputted_country_name):
-    connection = sqlite3.connect('travelSearch.db')
-    cursor = connection.cursor()
+    #connection = sqlite3.connect('travelSearch.db')
+    #cursor = connection.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -82,6 +82,6 @@ def query_country_overview(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    connection.close()
+    #connection.close()
 
     return user_output

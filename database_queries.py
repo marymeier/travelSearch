@@ -42,7 +42,7 @@ def query_country_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    mysql.connector.close()
+    #mysql.connector.close()
 
     return user_output
 
@@ -73,7 +73,7 @@ def query_capital_city_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    mysql.connector.close()
+   # mysql.connector.close()
 
     return user_output
 
@@ -106,7 +106,7 @@ def query_public_transportation_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    mysql.connector.close()
+    #mysql.connector.close()
 
     return user_output
 
@@ -146,7 +146,7 @@ def query_national_cuisine_attributes(user_id, user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    mysql.connector.close()
+    #mysql.connector.close()
 
     return user_output
 
@@ -190,7 +190,7 @@ def query_economy_attributes(user_id, user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    mysql.connector.close()
+    #mysql.connector.close()
 
     return user_output
 
@@ -226,7 +226,7 @@ def query_national_security_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    mysql.connector.close()
+    #mysql.connector.close()
 
     return user_output
 
@@ -271,7 +271,7 @@ def query_tourist_attractions_attributes(user_id, user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    mysql.connector.close()
+    #mysql.connector.close()
 
     return user_output
 
@@ -309,5 +309,5 @@ def query_climate_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    mysql.connector.close()
+    #xmysql.connector.close()
     return user_output
