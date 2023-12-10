@@ -25,17 +25,6 @@ def create_users_table():
                             PRIMARY KEY(user_id, country_name)
                             );
                             """
-    # create_users_table = """CREATE TABLE Users (
-    #                     user_id VARCHAR(50) NOT NULL,
-    #                     country_name VARCHAR(100),
-    #                     tourist_attraction_fun_fact VARCHAR(300) DEFAULT NULL,
-    #                     economic_cost_of_stay FLOAT DEFAULT NULL,
-    #                     national_cuisine_rating FLOAT DEFAULT NULL,
-    #                     PRIMARY KEY(user_id, country_name),
-    #                     FOREIGN KEY (country_name)
-    #                         REFERENCES Country(name)
-    #                     );
-    #                     """
     cursor.execute(create_users_table)
 
     mydb.commit()
