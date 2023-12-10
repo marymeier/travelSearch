@@ -41,11 +41,11 @@ economic_world_ranking,homicide_rate_per_100000,global_peace_index,avg_larceny_p
 117,2.19,83.0,22.79,Police of the republic of armenia
 125,2.31,40.0,6.9,Policia e shtetit
 130,1.14,27.0,25.0,Police of the republic of north macedonia
-131,0.38,,28.0,Malta police force
-147,5.12,,521.0,The liechtenstein national police
+131,0.38,0,28.0,Malta police force
+147,5.12,0,521.0,The liechtenstein national police
 149,2.39,29.0,69.8,Police directorate of montenegro
 155,2.21,70.0,2.21,Carabinieri
-168,1,,31.8,The police of monaco
-171,0,,483.1,Civil police
+168,1,0,31.8,The police of monaco
+171,0,0,483.1,Civil police
 172,2.6,163.0,8.43,Police corps of andorra
-197,0; 1 homicide in 93 years,,54.69,Gendarmerie corps of vatican city
+197,0,0,54.69,Gendarmerie corps of vatican city
