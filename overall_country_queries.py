@@ -82,5 +82,3 @@ def query_country_overview(user_inputted_country_name):
     cursor.close()
 
     return user_output
-
-# mydb.close()

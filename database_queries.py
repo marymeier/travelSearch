@@ -309,5 +309,3 @@ def query_climate_attributes(user_inputted_country_name):
     cursor.close()
 
     return user_output
-
-# mydb.close()
