@@ -8,15 +8,12 @@ mydb = mysql.connector.connect(
     database="travelSearch"
 )
 
-# Cursor object
-cursor = mydb.cursor()
-
 def format_country_name(user_inputted_country_name):
     return user_inputted_country_name.lower().title()
 
 def query_country_names():
-    #connection = sqlite3.connect('travelSearch.db')
-    #cursor = connection.cursor()
+    # Cursor object
+    cursor = mydb.cursor()
 
     select_query = "SELECT name as country_names FROM Country"
     cursor.execute(select_query)
@@ -27,14 +24,14 @@ def query_country_names():
     for row in rows:
         available_countries.append(row[0])
     
-    #connection.close()
+    cursor.close()
 
     return available_countries
 
 
 def query_country_overview(user_inputted_country_name):
-    #connection = sqlite3.connect('travelSearch.db')
-    #cursor = connection.cursor()
+    # Cursor object
+    cursor = mydb.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -58,7 +55,7 @@ def query_country_overview(user_inputted_country_name):
                     JOIN Public_Transportation ON Country.name = Public_Transportation.country_name
                     JOIN National_Cuisine ON Country.name = National_Cuisine.country_name
                     JOIN Economy ON Country.name = Economy.country_name
-                    WHERE Country.name = ?;
+                    WHERE Country.name = %s;
                     """
     cursor.execute(select_query, (country_name,))
 
@@ -83,6 +80,8 @@ def query_country_overview(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    #connection.close()
+    cursor.close()
 
     return user_output
+
+# mydb.close()

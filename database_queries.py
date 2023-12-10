@@ -8,15 +8,12 @@ mydb = mysql.connector.connect(
     database="travelSearch"
 )
 
-# Cursor object
-cursor = mydb.cursor()
-
 def format_country_name(user_inputted_country_name):
     return user_inputted_country_name.lower().title()
 
 def query_country_attributes(user_inputted_country_name):
-    #connection = sqlite3.connect('travelSearch.db')
-    #cursor = travelSearch.cursor()
+    # Cursor object
+    cursor = mydb.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -27,7 +24,7 @@ def query_country_attributes(user_inputted_country_name):
                         time_zone,
                         official_language
                     FROM Country
-                    WHERE name = ?;
+                    WHERE name = %s;
                     """
     cursor.execute(select_query, (country_name,))
 
@@ -43,13 +40,13 @@ def query_country_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    #mysql.connector.close()
+    cursor.close()
 
     return user_output
 
 def query_capital_city_attributes(user_inputted_country_name):
-    #connection = sqlite3.connect('travelSearch.db')
-    #cursor = connection.cursor()
+    # Cursor object
+    cursor = mydb.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -59,7 +56,7 @@ def query_capital_city_attributes(user_inputted_country_name):
                         capital_city_region,
                         population
                     FROM Capital_City
-                    WHERE country = ?;
+                    WHERE country = %s;
                     """
     cursor.execute(select_query, (country_name,))
 
@@ -74,13 +71,13 @@ def query_capital_city_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-   # mysql.connector.close()
+    cursor.close()
 
     return user_output
 
 def query_public_transportation_attributes(user_inputted_country_name):
-    #connection = sqlite3.connect('travelSearch.db')
-    #cursor = connection.cursor()
+    # Cursor object
+    cursor = mydb.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -91,7 +88,7 @@ def query_public_transportation_attributes(user_inputted_country_name):
                         most_used AS most_used,
                         avg_price_of_ticket
                     FROM Public_Transportation
-                    WHERE country_name = ?;
+                    WHERE country_name = %s;
                     """
     cursor.execute(select_query, (country_name,))
 
@@ -107,13 +104,13 @@ def query_public_transportation_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    #mysql.connector.close()
+    cursor.close()
 
     return user_output
 
 def query_national_cuisine_attributes(user_id, user_inputted_country_name):
-    #connection = sqlite3.connect('travelSearch.db')
-    #cursor = connection.cursor()
+    # Cursor object
+    cursor = mydb.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -123,13 +120,13 @@ def query_national_cuisine_attributes(user_id, user_inputted_country_name):
                         food_classification,
                         most_exported_food
                     FROM National_Cuisine
-                    WHERE country_name = ?;
+                    WHERE country_name = %s;
                     """
     cursor.execute(select_query, (country_name,))
 
     result = cursor.fetchone()
 
-    national_cuisine_rating_query = f"SELECT national_cuisine_rating FROM Users WHERE user_id = '{user_id}' AND country_name = ?"
+    national_cuisine_rating_query = f"SELECT national_cuisine_rating FROM Users WHERE user_id = '{user_id}' AND country_name = %s"
     cursor.execute(national_cuisine_rating_query, (country_name,))
     rating_result = cursor.fetchone()
     
@@ -147,13 +144,13 @@ def query_national_cuisine_attributes(user_id, user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    #mysql.connector.close()
+    cursor.close()
 
     return user_output
 
 def query_economy_attributes(user_id, user_inputted_country_name):
-    #connection = sqlite3.connect('travelSearch.db')
-    #cursor = connection.cursor()
+    # Cursor object
+    cursor = mydb.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -165,13 +162,13 @@ def query_economy_attributes(user_id, user_inputted_country_name):
                         currency,
                         largest_industry
                     FROM Economy
-                    WHERE country_name = ?;
+                    WHERE country_name = %s;
                     """
     cursor.execute(select_query, (country_name,))
 
     result = cursor.fetchone()
 
-    economic_cost_of_stay_query = f"SELECT economic_cost_of_stay FROM Users WHERE user_id = '{user_id}' AND country_name = ?"
+    economic_cost_of_stay_query = f"SELECT economic_cost_of_stay FROM Users WHERE user_id = '{user_id}' AND country_name = %s"
     cursor.execute(economic_cost_of_stay_query, (country_name,))
     rating_result = cursor.fetchone()
     
@@ -191,13 +188,13 @@ def query_economy_attributes(user_id, user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    #mysql.connector.close()
+    cursor.close()
 
     return user_output
 
 def query_national_security_attributes(user_inputted_country_name):
-    #connection = sqlite3.connect('travelSearch.db')
-    #cursor = connection.cursor()
+    # Cursor object
+    cursor = mydb.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -210,7 +207,7 @@ def query_national_security_attributes(user_inputted_country_name):
                     WHERE economic_world_ranking = (
                         SELECT economic_world_ranking
                         FROM Economy
-                        WHERE country_name = ?
+                        WHERE country_name = %s
                     );
                     """
     cursor.execute(select_query, (country_name,))
@@ -227,13 +224,13 @@ def query_national_security_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    #mysql.connector.close()
+    cursor.close()
 
     return user_output
 
 def query_tourist_attractions_attributes(user_id, user_inputted_country_name):
-    #connection = sqlite3.connect('travelSearch.db')
-    #cursor = connection.cursor()
+    # Cursor object
+    cursor = mydb.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -246,14 +243,14 @@ def query_tourist_attractions_attributes(user_id, user_inputted_country_name):
                     WHERE city_name = (
                         SELECT capital_city
                         FROM Capital_City
-                        WHERE country = ?
+                        WHERE country = %s
                     );
                     """
     cursor.execute(select_query, (country_name,))
 
     result = cursor.fetchone()
 
-    tourist_attraction_fun_fact_query = f"SELECT tourist_attraction_fun_fact FROM Users WHERE user_id = '{user_id}' AND country_name = ?"
+    tourist_attraction_fun_fact_query = f"SELECT tourist_attraction_fun_fact FROM Users WHERE user_id = '{user_id}' AND country_name = %s"
     cursor.execute(tourist_attraction_fun_fact_query, (country_name,))
     rating_result = cursor.fetchone()
     
@@ -272,13 +269,13 @@ def query_tourist_attractions_attributes(user_id, user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    #mysql.connector.close()
+    cursor.close()
 
     return user_output
 
 def query_climate_attributes(user_inputted_country_name):
-    #connection = sqlite3.connect('travelSearch.db')
-    #cursor = connection.cursor()
+    # Cursor object
+    cursor = mydb.cursor()
 
     country_name = format_country_name(user_inputted_country_name)
 
@@ -292,7 +289,7 @@ def query_climate_attributes(user_inputted_country_name):
                     WHERE city_name = (
                         SELECT capital_city
                         FROM Capital_City
-                        WHERE country = ?
+                        WHERE country = %s
                     );
                     """
     cursor.execute(select_query, (country_name,))
@@ -310,5 +307,8 @@ def query_climate_attributes(user_inputted_country_name):
     else:
         user_output = {"Country Name": "Invalid country name. Country was either mispelled or is not in Europe, (not case sensitive)"}
     
-    #xmysql.connector.close()
+    cursor.close()
+
     return user_output
+
+# mydb.close()
