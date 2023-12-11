@@ -82,13 +82,13 @@ def user_exists(user_id):
     cursor = mydb.cursor()
 
     # Check if a record with the given user_id exists
-    check_existing_record_query = f"SELECT * FROM Users WHERE user_id = '{user_id}'"
+    check_existing_record_query = f"SELECT * FROM Users WHERE user_id = '{user_id}' LIMIT 1"
     cursor.execute(check_existing_record_query)
 
     existing_record = cursor.fetchone()
 
     cursor.close()
-
+    
     return existing_record is not None
 
 def insert_tourist_attraction_fun_fact(user_id, country_name, tourist_attraction_fun_fact):
